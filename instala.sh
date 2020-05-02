@@ -42,7 +42,7 @@ echo "ADM-R-U-S-S-2020" > exito
 fi
 if [[ $key = $key ]];
 then
-src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
+src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
