@@ -2,32 +2,27 @@
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 dom='base64 -d'
 clear
-echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 apt-get install sysvbanner -y
 apt-get install lolcat -y
 apt-get install cowsay -y
+clear
 apt-get install figlet -y
 apt-get install boxes -y
-clear
-figlet R-U-S-S
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
-echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo -e " KEY: "; 
-sleep 1
 clear
 echo " R - U - S - S " | boxes -d cat -a c | lolcat
 echo -e ""
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo -e " KEY: ********************************"
+echo -e " KEY: Verified"
 echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-read -rsp $'VERIFICANDO..\n' -n 1 -t 5;
+read -rsp $'' -n 1 -t 5;
 sleep 2
 clear
 if [[ $key != $key ]];
 then
 echo "Ingrese una Key Valida"
 rm -f instala.sh*
-rm -f cgh.sh*
+rm -f russ.sh*
 else
 mkdir -p chumogh
 cd chumogh
