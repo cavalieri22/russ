@@ -32,7 +32,6 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
-echo "ADM-R-U-S-S-2020" > exito
 fi
 if [[ $key = $key ]];
 then
@@ -137,6 +136,7 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): russ, menu, a
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
+echo "ADM-R-U-S-S-"$name > exito
 rm -f instala.sh*
 rm -f cgh.sh*
 }
