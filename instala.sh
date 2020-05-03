@@ -17,8 +17,7 @@ echo " KEY: Verified"
 echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 sleep 2
 clear
-if [[ $key != $key ]];
-then
+if [[ $key != $key ]];then
 echo "Ingrese una Key Valida"
 rm -f instala.sh*
 rm -f russ.sh*
@@ -53,7 +52,7 @@ echo -ne "\033[1;33m ["
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m##"
-   sleep 0.1s
+   sleep 0,1
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
    echo -e "\033[1;33m]"
