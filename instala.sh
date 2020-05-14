@@ -20,7 +20,7 @@ clear
 if [[ $key != $key ]];then
 echo "Ingrese una Key Valida"
 rm -f instala.sh*
-rm -f russ.sh*
+rm -f russel.sh*
 else
 mkdir -p chumogh
 cd chumogh
