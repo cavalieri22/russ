@@ -137,7 +137,7 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/
 figlet $name | lolcat
 echo "ADM\-"$name"-/R-U-S-S" > exito
 rm -f instala.sh*
-rm -f cgh.sh*
+rm -f russel.sh*
 }
 
 
