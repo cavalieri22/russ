@@ -329,7 +329,7 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Instalando dropbear")"
 echo -e "$barra"
 fun_bar "apt-get install dropbear -y"
 echo -e "$barra"
-touch /etc/dropbear/banner
+cat /etc/bannerssh > /etc/dropbear/banner
 echo -e "${cor[2]} $(source trans -b pt:${id} "Configurando dropbear")"
 echo -e "NO_START=0" > /etc/default/dropbear
 echo -e 'DROPBEAR_EXTRA_ARGS="-p '$dpa'"' >> /etc/default/dropbear
@@ -1106,7 +1106,7 @@ echo -e "$barra"
 fun_bar "apt-get install stunnel4 -y"
 echo -e "cert = /etc/stunnel/stunnel.pem\nclient = no\nsocket = a:SO_REUSEADDR=1\nsocket = l:TCP_NODELAY=1\nsocket = r:TCP_NODELAY=1\n\n[stunnel]\nconnect = 127.0.0.1:${DPORT}\naccept = ${SSLPORT}" > /etc/stunnel/stunnel.conf
 openssl genrsa -out key.pem 2048 > /dev/null 2>&1
-(echo "MX"; echo "mx"; echo "mx"; echo "mx"; echo "mx"; echo "mx"; echo "mx")|openssl req -new -x509 -key key.pem -out cert.pem -days 1095 > /dev/null 2>&1
+(echo "EC"; echo "@ChumoGH"; echo "@ChumoGH"; echo "+593987072611"; echo "@ChumoGH"; echo "ECUADOR"; echo "chumogh@gmail.com")|openssl req -new -x509 -key key.pem -out cert.pem -days 1095 > /dev/null 2>&1
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 service stunnel4 restart > /dev/null 2>&1
@@ -1160,6 +1160,28 @@ echo -e "\033[1;32m ANTIDDOS INSTALADO CON EXITO.\033[1;37m"
 echo -e "$barra"
 }
 
+v2ray-socket() {
+echo -ne "\033[1;37m \n 1)- para Instalar \n 2)- Desinstalar \n 3)- Menu V2ray \nEscoje:" | lolcat
+read v2op
+case $v2op in
+1)
+echo "Opcion Selecionada " $v2op "Vamos a Instalar" | lolcat
+source <(curl -sL https://multi.netlify.com/v2ray.sh)
+;;
+2)
+echo "Opcion Selecionada " $v2op "Vamos a Desisnatalar" | lolcat
+source <(curl -sL https://multi.netlify.com/v2ray.sh) --remove
+;;
+3)
+echo "Opcion Selecionada " $v2op "Vamos a Iniciar" | lolcat
+v2ray
+;;
+*)
+menu
+;;
+esac
+}
+
 #FUNCOES
 funcao_addcores () {
 if [ "$1" = "0" ]; then
@@ -1207,18 +1229,21 @@ unset gettun
 unset tcpbypass
 unset webminn
 unset ddos
-[[ -e /etc/squid/squid.conf ]] && squid="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/squid3/squid.conf ]] && squid="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/default/dropbear ]] && dropbear="\033[1;32m$(source trans -b pt:${id} "[●] ")"
+unset v2ray
+[[ -e /etc/squid/squid.conf ]] && squid="\033[1;32m[ ✔ ] "
+[[ -e /etc/squid3/squid.conf ]] && squid="\033[1;32m[ ✔ ] "
+[[ -e /etc/default/dropbear ]] && dropbear="\033[1;32m[ ✔ ] "
 [[ -e /etc/openvpn/server.conf ]] && openvpn="\033[1;32m$(source trans -b pt:${id} "Configurado")"
-[[ $(mportas|grep stunnel4|head -1) ]] && stunel="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/shadowsocks.json ]] && shadow="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ "$(ps x | grep "ultimatebot" | grep -v "grep")" != "" ]] && telegran="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/adm-lite/sockson ]] && socks="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/adm-lite/gettun ]] && gettun="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/adm-lite/edbypass ]] && tcpbypass="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /etc/webmin/miniserv.conf ]] && webminn="\033[1;32m$(source trans -b pt:${id} "[●] ")"
-[[ -e /usr/local/ddos/ddos.conf ]] && ddos="\033[1;32m$(source trans -b pt:${id} "[●] ")"
+[[ $(mportas|grep stunnel4|head -1) ]] && stunel="\033[1;32m[ ✔ ] "
+[[ -e /etc/shadowsocks.json ]] && shadow="\033[1;32m[ ✔ ] "
+[[ "$(ps x | grep "ultimatebot" | grep -v "grep")" != "" ]] && telegran="\033[1;32m[ ✔ ] "
+[[ -e /etc/adm-lite/sockson ]] && socks="\033[1;32m[ ✔ ] "
+[[ -e /etc/adm-lite/gettun ]] && gettun="\033[1;32m[ ✔ ] "
+[[ -e /etc/adm-lite/edbypass ]] && tcpbypass="\033[1;32m[ ✔ ] "
+[[ -e /etc/webmin/miniserv.conf ]] && webminn="\033[1;32m[ ✔ ] "
+[[ -e /usr/local/ddos/ddos.conf ]] && ddos="\033[1;32m[ ✔ ] "
+[[ -e /etc/v2ray/config.json ]] && v2ray="\033[1;32m[ ✔ ] "
+
 echo -e "$barra"
 echo -e "${cor[5]} ${txt[335]}"
 echo -e "$barra"
@@ -1233,6 +1258,7 @@ echo -e "${cor[2]} [8] > ${cor[3]}TCP OVER BYPASS $tcpbypass"
 echo -e "${cor[2]} [9] > ${cor[3]}TELEGRAN MANAGER BOT $telegran"
 echo -e "${cor[2]} [10] > ${cor[3]}WEBMIN $webminn"
 echo -e "${cor[2]} [11] > ${cor[3]}Anti-DDOS $ddos"
+echo -e "${cor[2]} [12] > ${cor[3]}V2ray Socket $v2ray"
 echo -e "$barra"
 echo -ne "\033[1;37m ${txt[338]}: "
 read optons
@@ -1269,6 +1295,9 @@ web_min
 read -p " Enter";;
 11)
 antiddos
+read -p " Enter";;
+12)
+v2ray-socket
 read -p " Enter";;
 esac
 
