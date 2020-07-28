@@ -1053,7 +1053,7 @@ service ssh restart 1> /dev/null 2> /dev/null
 service squid restart 1> /dev/null 2> /dev/null
 service squid3 restart 1> /dev/null 2> /dev/null
 #echo "Limpieza Finalizada"
-cgh
+menu
 ;;
 2)
 echo -e "$barra"
@@ -1074,7 +1074,7 @@ echo -e "$barra"
 return 0
 ;;
 *)
-cgh
+menu
 ;;
 esac
 #FIN VERIFICA STUNNEL4 ACTIVO 
@@ -1087,7 +1087,7 @@ echo -ne " ESCOJE: "; read lang
 case $lang in
 1)
 bash /etc/adm-lite/ssl
-cgh
+menu
 ;;
 2)
 echo -e "$barra"
@@ -1141,7 +1141,7 @@ echo -e "$barra"
 return 0
 ;;
 *)
-cgh
+menu
 ;;
 esac
 }
