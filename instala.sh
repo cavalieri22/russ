@@ -2,12 +2,12 @@
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 dom='base64 -d'
 clear
-apt-get install sysvbanner -y
-apt-get install lolcat -y
-apt-get install cowsay -y
+apt-get install sysvbanner -y 1> /dev/null 2> /dev/null
+apt-get install lolcat -y 1> /dev/null 2> /dev/null
+apt-get install cowsay -y 1> /dev/null 2> /dev/null
 clear
-apt-get install figlet -y
-apt-get install boxes -y
+apt-get install figlet -y 1> /dev/null 2> /dev/null
+apt-get install boxes -y 1> /dev/null 2> /dev/null
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 clear
 echo " R - U - S - S " | boxes -d cat -a c | lolcat
@@ -31,6 +31,8 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
+
+echo "KEY: Verified FOR R-U-S-S-E-L ADM 2020" > exito
 fi
 if [[ $key = $key ]];
 then
