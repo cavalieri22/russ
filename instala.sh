@@ -32,7 +32,7 @@ cd
 cd
 rm -rf chumogh
 
-echo "KEY: Verified FOR R-U-S-S-E-L ADM 2020" > exito
+echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
 fi
 if [[ $key = $key ]];
 then
