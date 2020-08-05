@@ -53,7 +53,7 @@ Verified【 ★ RUSS ★ 】 ADM 2020
 ' > /etc/bannerssh
 echo "BANNER AGREGADO |||| REINTENTE"
 return 1
-cgh 10
+russ 10
 }
 function dropbear14(){
 clear
@@ -106,7 +106,7 @@ Verified【 ★ RUSS ★ 】 ADM 2020
 ' > /etc/bannerssh
 echo "BANNER AGREGADO |||| REINTENTE"
 return 1
-cgh 10
+russ 10
 }
 function dropbear16(){
 clear
@@ -159,7 +159,7 @@ Verified【 ★ RUSS ★ 】 ADM 2020
 ' > /etc/bannerssh
 echo "BANNER AGREGADO |||| REINTENTE"
 return 1
-cgh 10
+russ 10
 }
 function dropbeardebian9(){
 clear
@@ -174,7 +174,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 service dropbear restart 1> /dev/null 2> /dev/null
 echo -e "\033[1;31mINSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
 read -p " "
-cgh 10
+russ 10
 }
 function dropbearcentos(){
 clear
@@ -188,7 +188,7 @@ wget --no-check-certificate https://www.dropbox.com/s/lk9f2cbiois00bt/dropbear >
 service dropbear restart 1> /dev/null 2> /dev/null
 echo -e "\033[1;31mINSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
 read -p " "
-cgh 10
+russ 10
 }
 function installdropbear(){
 clear
@@ -237,7 +237,7 @@ dropbearcentos;;
 dropbearuniversal;;
 0)
 unset opcao
-cgh;;
+russ;;
 esac
 }
 [[ $1 != "" ]] && id="$1" || id="es"
@@ -564,14 +564,14 @@ service dropbear restart
 dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
 echo "Puertos que Corren en DROPBEAR " $dropbearports 
 sleep 10
-cgh
+russ
 fi
  return 0
  }
 echo "Desgraciado, No HAS INSTALADO EL SERVICIO AUN ;C"
 ;;
 *)
-cgh
+russ
 ;;
 esac
 }
@@ -1237,7 +1237,7 @@ service ssh restart 1> /dev/null 2> /dev/null
 service squid restart 1> /dev/null 2> /dev/null
 service squid3 restart 1> /dev/null 2> /dev/null
 #echo "Limpieza Finalizada"
-cgh
+russ
 ;;
 2)
 echo -e "$barra"
@@ -1258,7 +1258,7 @@ echo -e "$barra"
 return 0
 ;;
 *)
-cgh
+russ
 ;;
 esac
 #FIN VERIFICA STUNNEL4 ACTIVO 
@@ -1271,7 +1271,7 @@ echo -ne " ESCOJE: "; read lang
 case $lang in
 1)
 bash /etc/adm-lite/ssl
-cgh
+russ
 ;;
 2)
 echo -e "$barra"
@@ -1323,7 +1323,7 @@ echo -e "$barra"
 return 0
 ;;
 *)
-cgh
+russ
 ;;
 esac
 }
