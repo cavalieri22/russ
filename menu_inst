@@ -1,4 +1,245 @@
 #!/bin/bash
+os_version=$(lsb_release -sr);
+distribution=$(lsb_release -si);
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+function dropbearuniversal(){
+clear
+echo "› Preparando Instalacion"
+service dropbear stop 1> /dev/null 2> /dev/null
+killall dropbear 1> /dev/null 2> /dev/null
+apt-get -y purge dropbear 1> /dev/null 2> /dev/null
+apt-get -y remove dropbear 1> /dev/null 2> /dev/null
+[[ -e /etc/bannerssh ]] && {
+echo "› Instalando Dropbear"
+fun_bar "apt-get -y install dropbear"
+service dropbear stop 1> /dev/null 2> /dev/null
+rm -rf /etc/default/dropbear
+cp /etc/adm-lite/confdropbear /etc/default/dropbear
+echo -e "\033[1;31m › ESCRIBE UN PUERTO PARA DROPBEAR\033[0m"
+echo -e "\033[1;31m › RECOMENDADO 443\033[0m"
+read -p "› : " puertodropbear
+[[ $(mportas|grep $puertodropbear) != "" ]] && {
+   echo -e "\033[1;31m $(source trans -b pt:${id} "PORTA " $puertodropbear "EN USO")\033[1;37m"
+   echo -e "\033[1;31m $(source trans -b es:${id} "INTENTE NUEVAMENTE")\033[1;37m"
+   fuser -k $puertodropbear/tcp > /dev/null 2>&1
+   echo -e "$barra"
+   return 1
+   }
+sed -i '2i DROPBEAR_PORT="'"$puertodropbear"'"' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+service dropbear restart 1> /dev/null 2> /dev/null
+#service ssh restart 1> /dev/null 2> /dev/null
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+#service sshd restart 1> /dev/null 2> /dev/null
+echo -e "\033[1;31m › DROPBEAR ESCUCHA \033[0m" $dropbearports " ESCOJIDO " $puertodropbear
+service dropbear start 1> /dev/null 2> /dev/null
+#fun_eth
+echo -e "\033[1;33m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+read -p " "
+return 0
+ }
+echo "BANNER INEXISTENTE"
+fun_bar 
+echo '<h1><font>▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</font></h1>
+<h1><font color="green">
+Banner RUSS 2020 Temporal
+</font></h1>
+<h1><font>▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</font></h1>
+<h6><font color="green">
+Verified【 ★ RUSS ★ 】 ADM 2020
+</h6></font>
+<font color="purple">RUSS ☠ »COPYRIGHT 2020«</font>
+' > /etc/bannerssh
+echo "BANNER AGREGADO |||| REINTENTE"
+return 1
+cgh 10
+}
+function dropbear14(){
+clear
+[[ -e /etc/bannerssh ]] && {
+echo "› Preparando Instalacion"
+service dropbear stop 1> /dev/null 2> /dev/null
+killall dropbear 1> /dev/null 2> /dev/null
+apt-get -y purge dropbear 1> /dev/null 2> /dev/null
+apt-get -y remove dropbear 1> /dev/null 2> /dev/null
+echo "› Instalando Dropbear"
+fun_bar "apt-get -y install dropbear"
+rm /etc/default/dropbear
+cp /etc/adm-lite/confdropbear /etc/default/dropbear
+echo -e "\033[1;31m › ESCRIBE UN PUERTO PARA DROPBEAR\033[0m"
+echo -e "\033[1;31m › RECOMENDADO 443\033[0m"
+read -p "› : " puertodropbear
+[[ $(mportas|grep $puertodropbear) != "" ]] && {
+   echo -e "\033[1;31m $(source trans -b pt:${id} "PORTA " $puertodropbear "EN USO")\033[1;37m"
+   echo -e "\033[1;31m $(source trans -b es:${id} "INTENTE NUEVAMENTE")\033[1;37m"
+   fuser -k $puertodropbear/tcp > /dev/null 2>&1
+   echo -e "$barra"
+   return 1
+   unset puertodropbear
+   }
+sed -i '2i DROPBEAR_PORT="'"$puertodropbear"'"' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+service dropbear restart 1> /dev/null 2> /dev/null
+#service ssh restart 1> /dev/null 2> /dev/null
+#service sshd restart 1> /dev/null 2> /dev/null
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+echo -e "\033[1;31m › DROPBEAR ESCUCHA \033[0m" $dropbearports " ESCOJIDO " $puertodropbear
+fun_eth
+service dropbear start 1> /dev/null 2> /dev/null
+echo -e "\033[1;33m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+read -p " "
+return 0
+ }
+echo "BANNER INEXISTENTE"
+fun_bar 
+echo '<h1><font>▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</font></h1>
+<h1><font color="green">
+Banner RUSS 2020 Temporal
+</font></h1>
+<h1><font>▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</font></h1>
+<h6><font color="green">
+Verified【 ★ RUSS ★ 】 ADM 2020
+</h6></font>
+<font color="purple">RUSS ☠ »COPYRIGHT 2020«</font>
+' > /etc/bannerssh
+echo "BANNER AGREGADO |||| REINTENTE"
+return 1
+cgh 10
+}
+function dropbear16(){
+clear
+[[ -e /etc/bannerssh ]] && {
+echo "› Preparando Instalacion"
+service dropbear stop 1> /dev/null 2> /dev/null
+killall dropbear 1> /dev/null 2> /dev/null
+apt-get -y purge dropbear 1> /dev/null 2> /dev/null
+apt-get -y remove dropbear 1> /dev/null 2> /dev/null
+echo "› Instalando Dropbear"
+fun_bar "apt-get -y install dropbear=2016.72-1"
+rm /etc/default/dropbear
+cp /etc/adm-lite/confdropbear /etc/default/dropbear
+echo -e "\033[1;31m › ESCRIBE UN PUERTO PARA DROPBEAR\033[0m"
+echo -e "\033[1;31m › RECOMENDADO 443\033[0m"
+read -p "› : " puertodropbear
+[[ $(mportas|grep $puertodropbear) != "" ]] && {
+   echo -e "\033[1;31m $(source trans -b pt:${id} "PORTA " $puertodropbear "EN USO")\033[1;37m"
+   echo -e "\033[1;31m $(source trans -b es:${id} "INTENTE NUEVAMENTE")\033[1;37m"
+   fuser -k $puertodropbear/tcp > /dev/null 2>&1
+   echo -e "$barra"
+   unset puertodropbear
+   return 1
+   }
+sed -i '2i DROPBEAR_PORT="'"$puertodropbear"'"' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+service dropbear restart 1> /dev/null 2> /dev/null
+#service ssh restart 1> /dev/null 2> /dev/null
+#service sshd restart 1> /dev/null 2> /dev/null
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+echo -e "\033[1;31m › DROPBEAR ESCUCHA \033[0m" $dropbearports " ESCOJIDO " $puertodropbear
+fun_eth
+service dropbear start 1> /dev/null 2> /dev/null
+echo -e "\033[1;33m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+read -p " "
+return 0
+ }
+echo "BANNER INEXISTENTE"
+fun_bar 
+echo '<h1><font>▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</font></h1>
+<h1><font color="green">
+Banner RUSS 2020 Temporal
+</font></h1>
+<h1><font>▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</font></h1>
+<h6><font color="green">
+Verified【 ★ RUSS ★ 】 ADM 2020
+</h6></font>
+<font color="purple">RUSS ☠ »COPYRIGHT 2020«</font>
+' > /etc/bannerssh
+echo "BANNER AGREGADO |||| REINTENTE"
+return 1
+cgh 10
+}
+function dropbeardebian9(){
+clear
+echo "Instalando Dropbear"
+apt-get -y purge dropbear 1> /dev/null 2> /dev/null
+apt-get -y install dropbear=2016.74-5
+clear
+sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+service dropbear restart 1> /dev/null 2> /dev/null
+echo -e "\033[1;31mINSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+read -p " "
+cgh 10
+}
+function dropbearcentos(){
+clear
+echo "Instalando Dropbear"
+yum -y remove dropbear 1> /dev/null 2> /dev/null
+wget http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 1> /dev/null 2> /dev/null
+rpm -Uvh epel-release-6-8.noarch.rpm 1> /dev/null 2> /dev/null
+yum -y install dropbear
+mkdir /etc/sysconfig
+wget --no-check-certificate https://www.dropbox.com/s/lk9f2cbiois00bt/dropbear > /etc/sysconfig/dropbear
+service dropbear restart 1> /dev/null 2> /dev/null
+echo -e "\033[1;31mINSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+read -p " "
+cgh 10
+}
+function installdropbear(){
+clear
+if [[ $1 == "" ]]
+then
+figlet -p -f slant < /root/name
+echo -e "\033[1;37m      【     ★ R U S S E L - ADM 2020 ★     】\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m - INSTALADOR DROPBEAR \033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m #######################################\033[1;33m"
+echo -e "\033[1;37mSeleccione su Sistema:    Para Salir Ctrl + C o 0 Para Regresar\033[1;33m
+[\033[1;30m1\033[1;33m] Ubuntu 14 \033[1;33m
+[\033[1;30m2\033[1;33m] Ubuntu 16 \033[1;33m
+[\033[1;30m3\033[1;33m] Ubuntu 17 \033[1;33m
+[\033[1;30m4\033[1;33m] Ubuntu 18 \033[1;33m
+[\033[1;30m5\033[1;33m] Ubuntu 19 \033[1;33m
+[\033[1;30m6\033[1;33m] Debian 8 \033[1;33m
+[\033[1;30m7\033[1;33m] Debian 9 \033[1;33m
+[\033[1;30m8\033[1;33m] CentOS \033[1;33m
+[\033[1;30m9\033[1;33m] Universal \033[1;33m
+[\033[1;30m0\033[1;33m] < REGRESAR                 \033[1;33m"
+read -p ": " opcao
+else
+opcao=$1
+fi
+case $opcao in
+1)
+dropbear14;;
+2)
+dropbear16;;
+3)
+dropbear16;;
+4)
+dropbearuniversal;;
+5)
+dropbearuniversal;;
+6)
+dropbearuniversal;;
+7)
+dropbeardebian9;;
+8)
+dropbearcentos;;
+9)
+dropbearuniversal;;
+0)
+unset opcao
+cgh;;
+esac
+}
 [[ $1 != "" ]] && id="$1" || id="es"
 barra="\033[1;34m =================================== \033[1;37m"
 _cores="./cores"
@@ -94,7 +335,7 @@ fun_squid  () {
   return 0
   }
 #Instalar
-echo -e "$barra\n\033[1;32m $(source trans -b pt:${id} "INSTALADOR SQUID ChumoGH-Script")\n$barra"
+echo -e "$barra\n\033[1;32m $(source trans -b pt:${id} "INSTALADOR SQUID R U S S E L-Script")\n$barra"
 fun_ip
 echo -ne " $(source trans -b pt:${id} "Confirme seu ip")"; read -p ": " -e -i $IP ip
 echo -e "$barra\n $(source trans -b pt:${id} "Ahora Escoja su Puerto que Desea en Squid")"
@@ -276,35 +517,63 @@ done
 }
 #INSTALAR DROPBEAR
 fun_dropbear () {
-echo "› Preparando Instalacion con ChumoGH"
-echo -e "$barra"
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+# INICIO STUNNEL ACTIVO
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ R U S S E L ☆ ADM SCRIPT "| lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -e "${cor[2]}DROPBEAR ACTIVO en Puertos: $dropbearports \n${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠\n${cor[2]}[1]- Instalar DROPBEAR \n[2]- Cerrar Puerto (s)\n[3]- Adicionar Port DROPBEAR " | lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -ne " ESCOJE: "; read lang
+case $lang in
+1)
+clear
+########LLAMAMOS FUNCION DROPBEAR#######
+installdropbear
+echo -e "$barra\n${cor[3]} $(source trans -b pt:${id} "Dropbear Configurado Exitosamente")\n$barra"
+;;
+2)
+ [[ -e /etc/default/dropbear ]] && {
+ echo -e "$barra\n\033[1;32m $(source trans -b es:${id} "REMOVIENDO DROPBEAR")\n$barra"
+ fun_bar "apt-get remove dropbear -y"
 service dropbear stop 1> /dev/null 2> /dev/null
 killall dropbear 1> /dev/null 2> /dev/null
 apt-get -y purge dropbear 1> /dev/null 2> /dev/null
 apt-get -y remove dropbear 1> /dev/null 2> /dev/null
-echo "› Instalando Dropbear"
-apt-get -y install dropbear 1> /dev/null 2> /dev/null
-rm /etc/default/dropbear
-cp /etc/adm-lite/confdropbear /etc/default/dropbear
-echo -e "\033[1;31m › ESCRIBE UN PUERTO PARA DROPBEAR\033[0m"
-echo -e "\033[1;31m › RECOMENDADO 443\033[0m"
-read -p "› : " puertodropbear
-sed -i '2i DROPBEAR_PORT="'"$puertodropbear"'"' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-echo "/usr/sbin/nologin" >> /etc/shells
-service dropbear restart 1> /dev/null 2> /dev/null
-echo -e "\033[1;33m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
-read -p " "
-fun_eth
-echo -e "$barra\n${cor[3]} $(source trans -b pt:${id} "Dropbear Configurado Exitosamente")\n$barra"
-mportas > /tmp/portz
-while read portas; do
-[[ $portas = "" ]] && break
-done < /tmp/portz
-#UFW
-for ufww in $(mportas|awk '{print $2}'); do
-ufw allow $ufww > /dev/null 2>&1
-done
+ echo -e "$barra\n\033[1;32m $(source trans -b pt:${id} "Dropbear Removido")\n$barra"
+ [[ -e /etc/default/dropbear ]] && rm /etc/default/dropbear
+ user -k $dpa/tcp > /dev/null 2>&1
+ return 0
+ }
+;;
+3)
+[[ -e /etc/default/dropbear ]] && {
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+echo "Puertos que Corren en DROPBEAR " $dropbearports 
+cp /etc/default/dropbear /etc/default/dropbear.or
+echo "Ingresa Nuevo Puerto a Escuchar:"
+read -p ": " portdrop
+fun_bar
+if lsof -Pi :$portdrop -sTCP:LISTEN -t >/dev/null ; then
+echo "Puerto Seleccionado Ocupado | Reintenta"
+else
+sed -i "3d" /etc/default/dropbear
+sed -i '3i DROPBEAR_EXTRA_ARGS="-p '"$portdrop"'"' /etc/default/dropbear
+echo "Reiniciando Dropbear para ejecutar cambios"
+fun_bar
+service dropbear restart
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+echo "Puertos que Corren en DROPBEAR " $dropbearports 
+sleep 10
+cgh
+fi
+ return 0
+ }
+echo "Desgraciado, No HAS INSTALADO EL SERVICIO AUN ;C"
+;;
+*)
+cgh
+;;
+esac
 }
 
 
@@ -937,7 +1206,7 @@ ssl_stunel () {
 sslports=`netstat -tunlp | grep stunnel4 | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/ssl.txt && echo | cat /tmp/ssl.txt | tr '\n' ' ' > /etc/adm-lite/sslports.txt && cat /etc/adm-lite/sslports.txt`;
 [[ $(mportas|grep stunnel4|head -1) ]] && {
 # INICIO STUNNEL ACTIVO
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆RUSSEL☆ ADM SCRIPT "| lolcat
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ R U S S ☆ ADM SCRIPT "| lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
 echo -e "${cor[2]}STUNNEL ACTIVO en Puertos: $sslports \n${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠\n${cor[2]}[1]- Adicionar Puerto \n[2]- Cerrar Puerto (s)" | lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
@@ -968,7 +1237,7 @@ service ssh restart 1> /dev/null 2> /dev/null
 service squid restart 1> /dev/null 2> /dev/null
 service squid3 restart 1> /dev/null 2> /dev/null
 #echo "Limpieza Finalizada"
-menu
+cgh
 ;;
 2)
 echo -e "$barra"
@@ -989,7 +1258,7 @@ echo -e "$barra"
 return 0
 ;;
 *)
-menu
+cgh
 ;;
 esac
 #FIN VERIFICA STUNNEL4 ACTIVO 
@@ -1002,7 +1271,7 @@ echo -ne " ESCOJE: "; read lang
 case $lang in
 1)
 bash /etc/adm-lite/ssl
-menu
+cgh
 ;;
 2)
 echo -e "$barra"
@@ -1038,7 +1307,7 @@ echo -e "$barra"
 fun_bar "apt-get install stunnel4 -y"
 echo -e "cert = /etc/stunnel/stunnel.pem\nclient = no\nsocket = a:SO_REUSEADDR=1\nsocket = l:TCP_NODELAY=1\nsocket = r:TCP_NODELAY=1\n\n[stunnel]\nconnect = 127.0.0.1:${DPORT}\naccept = ${SSLPORT}" > /etc/stunnel/stunnel.conf
 openssl genrsa -out key.pem 2048 > /dev/null 2>&1
-(echo "EC"; echo "@ChumoGH"; echo "@ChumoGH"; echo "+593987072611"; echo "@ChumoGH"; echo "ECUADOR"; echo "chumogh@gmail.com")|openssl req -new -x509 -key key.pem -out cert.pem -days 1095 > /dev/null 2>&1
+(echo "ES"; echo "@ChumoGH"; echo "@ChumoGH"; echo "+593987072611"; echo "@ChumoGH"; echo "www.chumogh.xyz"; echo "chumogh@gmail.com")|openssl req -new -x509 -key key.pem -out cert.pem -days 1095 > /dev/null 2>&1
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 service stunnel4 restart > /dev/null 2>&1
@@ -1048,15 +1317,13 @@ echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
 sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 service ssh restart 1> /dev/null 2> /dev/null
-service squid restart 1> /dev/null 2> /dev/null
-service squid3 restart 1> /dev/null 2> /dev/null
 #echo "Limpieza Finalizada"
 echo -e "\033[1;33m $(source trans -b pt:${id} "INSTALADO EXITOSA")"
 echo -e "$barra"
 return 0
 ;;
 *)
-menu
+cgh
 ;;
 esac
 }
