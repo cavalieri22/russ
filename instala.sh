@@ -34,12 +34,22 @@ echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE " | lol
 sleep 5
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 clear
+####
 echo " R - U - S - S " | boxes -d cat -a c | lolcat
 echo  ""
-echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo " KEY: Verified"
-echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-sleep 2
+export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo -ne " KEY: "; read key
+sleep 1
+clear
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - -【 ★ R-U-S-S-E-L ★ 】 ADM 2020 "| lolcat
+echo -e ""
+echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo -e " KEY: ********************************"
+echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+fun_bar
+read -rsp $'VERIFICANDO..\n' -n 1 -t 5;
+sleep 1
 clear
 if [[ $key != $key ]];then
 echo "Ingrese una Key Valida"
@@ -48,17 +58,17 @@ rm -f russel.*
 else
 mkdir -p chumogh
 cd chumogh
-#update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
-#update2=$(echo $update1|$dom)
-#wget -q $update2
-#validar=$(cat < chumogh.val)
+update1='aHR0cDovLzgwLjIxMS4yMzguMTM4OjgxL3J1c3NvLnZhbA=='
+update2=$(echo $update1|$dom)
+wget -q $update2
+validar=$(cat < russo.val)
 cd
 cd
 rm -rf chumogh
 
 echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
 fi
-if [[ $key = $key ]];
+if [[ $key = $validar ]];
 then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
 #usu=$(cat /etc/passwd | grep "system-root")
@@ -216,16 +226,18 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
 	else
           cd
 	  rm -rf *
+	  
 	  rm -f setup.*
 	  rm -f instala.*
 	  rm -rf chumogh
 	  #rm -f setup.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
-	  banner ChumoGH
+	  banner R-U-S-S
 
 	  echo "Key Invalida, Contacta con el Desarrolador"
           echo "  ● Compra Keys al +593987072611 "
+	   echo "  ● Telegram @russel "
 	  key=null
 	  validar=null
 	fi
