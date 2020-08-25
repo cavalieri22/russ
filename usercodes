@@ -645,11 +645,11 @@ elif [[ "$ban_ner_cor" = "4" ]]; then
 echo '<h'$_size'><font color="yellow">' >> $local
 elif [[ "$ban_ner_cor" = "5" ]]; then
 echo '<h'$_size'><font color="purple">' >> $local
-elif [ "$ban_ner2_cor" = "6" ]; then
+elif [ "$ban_ner_cor" = "6" ]; then
 echo '<h'$_size'><font color="#FF7F00">' >> $local
-elif [ "$ban_ner2_cor" = "7" ]; then
+elif [ "$ban_ner_cor" = "7" ]; then
 echo '<h'$_size'><font color="#AEB404">' >> $local
-elif [ "$ban_ner2_cor" = "8" ]; then
+elif [ "$ban_ner_cor" = "8" ]; then
 echo '<h'$_size'><font color="cyan">' >> $local
 else
 echo '<h'$_size'><font color="blue">' >> $local
@@ -666,7 +666,7 @@ elif [[ "$sin_nao" = @(n|N) ]]; then
 break
 fi
 done
-echo '<font color="purple">© 2020 R-U-S-S, Inc</font>' >> $local
+echo '<font color="yellow">© 2020 R-U-S-S, Inc</font>' >> $local
 #echo '<h1><font>===================================</font></h1>' >> $local
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 service ssh restart > /dev/null 2>&1 &
