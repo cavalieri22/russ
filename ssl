@@ -84,4 +84,4 @@ echo -e "SU IP HOST DEL SERVIDOR:\037[1;30m $ip"
 sleep 1
 echo -e "Reinicie su VPS (Opcional) - sudo reboot"
 read -p " "
-cgh
+menu
