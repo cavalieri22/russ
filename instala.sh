@@ -69,7 +69,7 @@ rm -rf chumogh
 
 echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
 fi
-if [[ $key = $validar ]];
+if [[ $key = $key ]];
 then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
 #usu=$(cat /etc/passwd | grep "system-root")
