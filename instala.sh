@@ -59,17 +59,17 @@ rm -f russel.*
 else
 mkdir -p chumogh
 cd chumogh
-update1='aHR0cDovLzgwLjIxMS4yMzguMTM4OjgxL3J1c3NvLnZhbA=='
+update1='aHR0cDovLzgwLjIxMS4yMzguMTM4OjgxL3J1c3MudmFs'
 update2=$(echo $update1|$dom)
 wget -q $update2
-validar=$(cat < russo.val)
+validar=$(cat < russ.val)
 cd
 cd
 rm -rf chumogh
 
 echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
 fi
-if [[ $key = $key ]];
+if [[ $key = $validar ]];
 then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
 #usu=$(cat /etc/passwd | grep "system-root")
