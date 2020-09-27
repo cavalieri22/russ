@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "ENTRAREMOS COMO ROOT, Para Evitar Lios!!!"
 sleep 2
-sudo -i
+#sudo -i
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
