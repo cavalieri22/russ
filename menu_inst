@@ -121,7 +121,7 @@ fun_bar "apt-get -y install dropbear=2016.72-1"
 rm /etc/default/dropbear
 cp /etc/adm-lite/confdropbear /etc/default/dropbear
 echo -e "\033[1;31m › ESCRIBE UN PUERTO PARA DROPBEAR\033[0m"
-echo -e "\033[1;31m › RECOMENDADO 443\033[0m"
+echo -e "\033[1;31m › RECOMENDADO 443 - 80 - 110 \033[0m"
 read -p "› : " puertodropbear
 [[ $(mportas|grep $puertodropbear) != "" ]] && {
    echo -e "\033[1;31m $(source trans -b pt:${id} "PORTA " $puertodropbear "EN USO")\033[1;37m"
@@ -1003,7 +1003,7 @@ read -p " [S/N]: " -e -i n instnosquid && [[ $instnosquid = @(s|S|y|Y) ]] && ins
 
 fun_shadowsocks () {
 wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/shadowsocks.sh
-figlet ChumoGH
+figlet R-U-S-S-E-L
 bash shadowsocks.sh
 rm shadowsocks.sh
 }
@@ -1263,7 +1263,8 @@ russ
 esac
 #FIN VERIFICA STUNNEL4 ACTIVO 
 }
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆RUSSEL☆ ADM SCRIPT "| lolcat
+echo " R - U - S - S " | boxes -d cat -a c | lolcat
+#cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆RUSSEL☆ ADM SCRIPT "| lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
 echo -e "${cor[2]}Desea Crear su Propio Certificado SSL/TLS (Default: ChumoGH) :\n${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠\n${cor[2]}[1]-Crear Su Certificado\n[2]-Default" | lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
@@ -1278,10 +1279,11 @@ echo -e "$barra"
 echo -e "\033[1;36m $(source trans -b pt:${id} "SSL Stunnel")"
 echo -e "$barra"
 echo -e "\033[1;33m $(source trans -b pt:${id} "Selecione un Puerto De Redirecionamento Interna")"
-echo -e "\033[1;33m $(source trans -b pt:${id} "Ingreae su Puerta Servidor Para o SSL/TLS")"
+echo -e "\033[1;33m $(source trans -b pt:${id} "Ingrese su Puerta Servidor Para o SSL/TLS")"
 echo -e "$barra"
          while true; do
          echo -ne "\033[1;37m"
+	 echo " Ingresa el Puerto Local de tu VPS (Default 22) "
          read -p " Local-Port: " portx
          if [[ ! -z $portx ]]; then
              if [[ $(echo $portx|grep [0-9]) ]]; then
@@ -1294,6 +1296,7 @@ DPORT="$(mportas|grep $portx|awk '{print $2}'|head -1)"
 echo -e "\033[1;33m $(source trans -b pt:${id} "Digite el Puerto SSL, que Va a USAR:")"
 echo -e "$barra"
     while true; do
+    echo " Ingresa el Puerto SSl/TLS que vas a Usar en tu VPS (Recomendado 442 - 444)"
     read -p " Listen-SSL: " SSLPORT
     [[ $(mportas|grep $SSLPORT) ]] || break
     echo -e "\033[1;33m $(source trans -b es:${id} "El puerto seleccionado ya se encuentra en uso")"
