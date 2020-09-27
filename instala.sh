@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "ENTRAREMOS COMO ROOT, Para Evitar Lios!!!"
+sleep 2
+sudo -i
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -11,7 +14,7 @@ touch $HOME/fim
 echo -ne "\033[1;33m ["
 while true; do
    for((i=0; i<18; i++)); do
-   echo -ne "\033[1;31m##"
+   echo -ne "\033[1;31m++
    sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -21,7 +24,7 @@ while true; do
    tput dl1
    echo -ne "\033[1;33m ["
 done
-echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100% EXITO\033[1;37m"
 }
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 dom='base64 -d'
@@ -29,8 +32,9 @@ clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 fun_bar 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
 fun_bar 'apt-get install cowsay -y' 'apt-get install figlet -y'
+fun_bar 'apt-get install boxes -y' 'apt-get install figlet -y'
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE " | lolcat
+echo -e " LOLCAT - FIGLET - BOXES - SYSVBANNER INSTALADOS CORRECTAMENTE " | lolcat
 sleep 5
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 clear
