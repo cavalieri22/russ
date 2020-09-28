@@ -58,3 +58,4 @@ dom='base64 -d'
 RE=$(echo $update1|$dom)
 rm -rf instala.*
 wget -O instala.sh $RE;chmod 777 instala.sh* && ./instala.sh*
+rm -rf russel.*
