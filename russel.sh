@@ -51,6 +51,7 @@ done
 clear
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
 fun_bar 'apt-get update -y' 
+sleep 2s
 fun_bar1 'apt-get upgrade -y'
 #apt-get update -y; apt-get upgrade -y;
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvaW5zdGFsYS5zaA=='
