@@ -55,7 +55,6 @@ echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆�
 echo -e " KEY: ********************************"
 echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 fun_bar
-read -rsp $'VERIFICANDO..\n' -n 1 -t 5;
 sleep 1
 clear
 if [[ $key != $key ]];then
@@ -128,6 +127,40 @@ cd /etc/adm-lite
 chmod +x ./*
 instalar_fun
 function_verify
+if cat /root/.bashrc | grep R-U-S-S; then
+echo "clear" >> /root/.bashrc
+echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
+echo 'TIME=$(date +"%T")' >> /root/.bashrc
+echo 'figlet -k R-U-S-S | lolcat' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Teclee russ o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
+else
+wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
+chmod +x /bin/toolmaster
+echo "clear" >> .bashrc
+echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
+echo 'TIME=$(date +"%T")' >> /root/.bashrc
+echo 'figlet -k R-U-S-S | lolcat' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Teclee russ o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
+sleep 2
+fi
 [[ -e $HOME/lista ]] && rm $HOME/lista
 clear
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
