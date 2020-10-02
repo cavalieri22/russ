@@ -67,15 +67,14 @@ cd chumogh
 update1='aHR0cDovLzM1LjE4My4yMDkuOTg6ODEvcnVzcy52YWw='
 update2=$(echo $update1|$dom)
 wget -q $update2
-validar=$(cat < russ.val)
+#validar=$(cat < russ.val)
+echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
+fi
+if cat russ.val | grep $key >/dev/null 2>/dev/null
+then
 cd
 cd
 rm -rf chumogh
-
-echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
-fi
-if [[ $key = $validar ]];
-then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE='
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
