@@ -1,4 +1,5 @@
 #!/bin/bash
+fecha=`date +"%d-%m-%y"`;
 echo "ENTRAREMOS COMO ROOT, Para Evitar Lios!!!"
 sleep 2
 #sudo -i
@@ -181,6 +182,7 @@ echo " R - U - S - S " | boxes -d cat -a c | lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE R - U - S - S-Pannel Instalada Correctamente!")"
 echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acceder al PANNEL")"
+echo $fecha > /bin/ejecutar/fecha
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): russ, menu, adm"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
