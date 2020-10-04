@@ -42,6 +42,13 @@ sleep 5
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 clear
 ####
+killall apt apt-get &>/dev/null
+dpkg --configure -a &>/dev/null
+apt-get install software-properties-common -y  &>/dev/null
+apt-add-repository universe -y &>/dev/null
+rm -rf /etc/localtime &>/dev/null
+ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime &>/dev/null
+rm $(pwd)/$0 &> /dev/null
 echo " R - U - S - S " | boxes -d cat -a c | lolcat
 echo  ""
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
