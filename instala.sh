@@ -191,15 +191,19 @@ echo " R - U - S - S " | boxes -d cat -a c | lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE R - U - S - S-Pannel Instalada Correctamente!")"
 echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acceder al PANNEL")"
-echo $fecha > /bin/ejecutar/fecha
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): russ, menu, adm"
+echo $fecha > /bin/ejecutar/fecha
+echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
 echo "ADM\-"$name"-/R-U-S-S" > exito
 rm -f instala.*
 rm -f russel.*
+echo " Presiona Enter para Continuar"
+read -p " "
+russ
 }
 
 
