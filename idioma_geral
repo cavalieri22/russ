@@ -16,7 +16,7 @@ txt[3]="OS:"
 txt[4]="¡BIENVENIDO AL MENÚ! R-U-S-S"
 txt[5]="ADMINISTRAR USUARIOS"
 txt[6]="HERRAMIENTAS (Bad/VPN)"
-txt[355]="|(TCP-SPEED)"
+txt[455]="|(TCP-SPEED)"
 txt[7]="ACTUALIZAR"
 txt[8]="Desinstalar ADM | R-U-S-S"
 txt[9]="Escoje:"
@@ -364,6 +364,8 @@ txt[350]="Desinstalar Puertos:"
 txt[351]="Iniciar Puertos:"
 txt[352]="Puertas Activas en su Servidor"
 txt[353]="Registrar Usuario Temporal"
+txt[354]="DESACTIVAR KILL MULTILOGUIN"
+txt[355]="ACTIVAR KILL MULTILOGUIN"
 
 
 echo "${txt[0]}" > $_dr
