@@ -4,6 +4,7 @@ echo "ENTRAREMOS COMO ROOT, Para Evitar Lios!!!"
 sleep 2
 #sudo -i
 update_pak () {
+clear
 echo -ne " \033[1;31m[ ! ] Install SysBanner"
 apt-get install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Lolcat   "
