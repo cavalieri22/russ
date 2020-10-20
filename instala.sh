@@ -78,7 +78,7 @@ update1='aHR0cDovLzM1LjE4My4yMDkuOTg6ODEvcnVzcy52YWw='
 update2=$(echo $update1|$dom)
 wget -q $update2
 #validar=$(cat < russ.val)
-echo "Verified FOR R-U-S-S-E-L ADM 2020" > exito
+echo "Verified FOR R-U-S-S-E-L ADM 2020" > /root/exito
 fi
 if cat russ.val | grep $key >/dev/null 2>/dev/null
 then
