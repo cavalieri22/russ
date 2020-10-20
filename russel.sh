@@ -1,4 +1,7 @@
 #!/bin/bash
+killall apt apt-get &> /dev/null
+rm -rf russel.*
+dpkg --configure -a
 fun_bar1 () {
 comando[0]="$1"
 comando[1]="$2"
@@ -48,13 +51,28 @@ while true; do
    echo -ne "\033[1;33m ["
 done
 }
+update_pak () {
+echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
+echo -e ' '
+fun_bar1 'apt-add-repository universe -y'
+echo -e ' '
+fun_bar1 'sudo add-apt-repository ppa:neurobin/ppa'
+echo -ne " \033[1;31m[ ! ] apt-get update"
+apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] apt-get upgrade"
+apt-get upgrade -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] apt-get Repositorios Universales"
+apt-get install software-properties-common -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -e 'Listo!!! TERMINAMOS DE ACTUALIZAR TODOS LOS REPOSITORIOS'
+echo -e 'ZONA HORARIA EN UTC -  Mexico MX'
+return
+}
 clear
-echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
-fun_bar 'apt-get update -y' 
-echo ""
+update_pak
 sleep 2s
-fun_bar1 'apt-get upgrade -y'
-#apt-get update -y; apt-get upgrade -y;
+rm -rf /etc/localtime &>/dev/null
+ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime &>/dev/null
+rm $(pwd)/$0 &> /dev/null
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvaW5zdGFsYS5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
