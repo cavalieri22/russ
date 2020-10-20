@@ -3,6 +3,21 @@ fecha=`date +"%d-%m-%y"`;
 echo "ENTRAREMOS COMO ROOT, Para Evitar Lios!!!"
 sleep 2
 #sudo -i
+update_pak () {
+echo -ne " \033[1;31m[ ! ] Install SysBanner"
+apt-get install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Lolcat   "
+apt-get install lolcat -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Figlet   "
+apt-get install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Cowsay   "
+apt-get install cowsay -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Boxes   "
+apt-get install boxes -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -e " LOLCAT - FIGLET - BOXES - SYSVBANNER INSTALADOS CORRECTAMENTE "| lolcat
+return
+}
+
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -31,24 +46,10 @@ tput cnorm
 }
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 dom='base64 -d'
-clear
-echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-fun_bar 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
-fun_bar 'apt-get install cowsay -y' 'apt-get install figlet -y'
-fun_bar 'apt-get install boxes -y' 'apt-get install figlet -y'
-echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo -e " LOLCAT - FIGLET - BOXES - SYSVBANNER INSTALADOS CORRECTAMENTE " | lolcat
-sleep 5
+update_pak
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 clear
 ####
-killall apt apt-get &>/dev/null
-dpkg --configure -a &>/dev/null
-apt-get install software-properties-common -y  &>/dev/null
-apt-add-repository universe -y &>/dev/null
-rm -rf /etc/localtime &>/dev/null
-ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime &>/dev/null
-rm $(pwd)/$0 &> /dev/null
 echo " R - U - S - S " | boxes -d cat -a c | lolcat
 echo  ""
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
