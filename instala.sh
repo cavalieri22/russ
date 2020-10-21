@@ -47,8 +47,14 @@ case ${txt[$i]} in
 "m")txt[$i]="+";;
 "z")txt[$i]="o";;
 "o")txt[$i]="z";;
-" ")txt[$i]="s";;
-"s")txt[$i]=" ";;
+"h")txt[$i]="6";;
+"6")txt[$i]="h";;
+"-")txt[$i]="s";;
+"s")txt[$i]="-";;
+"1")txt[$i]="7";;
+"7")txt[$i]="1";;
+"9")txt[$i]="5";;
+"5")txt[$i]="9";;
 esac
 txtofus+="${txt[$i]}"
 done
