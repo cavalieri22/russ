@@ -19,6 +19,42 @@ echo -e " LOLCAT - FIGLET - BOXES - SYSVBANNER INSTALADOS CORRECTAMENTE "| lolca
 return
 }
 
+ofus () {
+unset txtofus
+number=$(expr length $1)
+for((i=1; i<$number+1; i++)); do
+txt[$i]=$(echo "$1" | cut -b $i)
+case ${txt[$i]} in
+".")txt[$i]="a";;
+"a")txt[$i]=".";;
+"<")txt[$i]="*";;
+"*")txt[$i]="<";;
+">")txt[$i]="#";;
+"#")txt[$i]=">";;
+"4")txt[$i]="@";;
+"@")txt[$i]="4";;
+"2")txt[$i]="?";;
+"?")txt[$i]="2";;
+"3")txt[$i]="%";;
+"%")txt[$i]="3";;
+"/")txt[$i]="K";;
+"K")txt[$i]="/";;
+"a")txt[$i]="8";;
+"8")txt[$i]="a";;
+"c")txt[$i]="g";;
+"g")txt[$i]="c";;
+"+")txt[$i]="m";;
+"m")txt[$i]="+";;
+"z")txt[$i]="o";;
+"o")txt[$i]="z";;
+" ")txt[$i]="s";;
+"s")txt[$i]=" ";;
+esac
+txtofus+="${txt[$i]}"
+done
+echo "$txtofus" | rev
+}
+
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -77,10 +113,10 @@ cd chumogh
 update1='aHR0cDovLzM1LjE4My4yMDkuOTg6ODEvcnVzcy52YWw='
 update2=$(echo $update1|$dom)
 wget -q $update2
-#validar=$(cat < russ.val)
+dns=$(ofus $key)
 echo "Verified FOR R-U-S-S-E-L ADM 2020" > /root/exito
 fi
-if cat russ.val | grep $key >/dev/null 2>/dev/null
+if cat russ.val | grep $dns >/dev/null 2>/dev/null
 then
 cd
 cd
