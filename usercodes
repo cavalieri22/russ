@@ -1,4 +1,6 @@
 #!/bin/bash
+cco=1
+uskk=$(cat /bin/ejecutar/uskill)
 #user=$(echo ${saks:0:5})
 os_version=$(lsb_release -sr);
 distribution=$(lsb_release -si);
@@ -72,6 +74,9 @@ echo "#!/bin/bash
 sleep $tempo
 kill"' $(ps -u '"$nome |awk '{print"' $1'"}') 1>/dev/null 2>/dev/null
 userdel --force $nome
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
 rm -rf /etc/usuariosteste/$nome.sh
 exit" > /etc/usuariosteste/$nome.sh
 figlet  $nome | lolcat
@@ -289,6 +294,9 @@ fi
 userdel --force $name > /dev/null 2>/dev/null
 kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
 pid_kill=$(function_dropb | grep "$name" | awk '{print $2}')
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
 if [ "$pid_kill" != "" ]; then
 drop_kill $name
 fi
@@ -312,6 +320,9 @@ open_2 $name
 userdel --force $name > /dev/null 2>&1
 kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}`  > /dev/null 2>&1
 pid_kill=$(function_dropb | grep "$name" | awk '{print $2}')
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
 if [ "$pid_kill" != "" ]; then
 drop_kill $name
 fi
@@ -534,6 +545,9 @@ echo $diff|grep -q ^\- && continue
 userdel --force $user > /dev/null 2>/dev/null
 kill -9 `ps aux |grep -vi '[a-z]$user' |grep -vi '$user[a-z]' |grep -v '[1-9]$user' |grep -v '$user[1-9]' |grep $user |awk {'print $2'}` 2> /dev/null
 pid_kill=$(function_dropb | grep "$user" | awk '{print $2}')
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
 [[ "$pid_kill" != "" ]] && drop_kill $user
 [[ "$OPENVPN" = "on" ]] && open_2 $name
 [[ -e $dir_user/$user ]] && rm $dir_user/$user
