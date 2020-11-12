@@ -593,8 +593,8 @@ service ssh restart > /dev/null 2>&1 &
 service sshd restart > /dev/null 2>&1 & 
 service dropbear restart > /dev/null 2>&1 &
 echo "EXITO AL CARGAR TU BANNER"
-sleep 5s
-menu
+sleep 2s
+exit
 }
 
 
