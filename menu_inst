@@ -20,7 +20,7 @@ Verified【 ★ RUSS ★ 】 ADM 2020
 </h6></font>
 ' > /etc/bannerssh
 echo "BANNER AGREGADO |||| REINTENTE"
-fun_dropbear
+installdropbear
 }
 
 
