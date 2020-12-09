@@ -2,7 +2,7 @@
 IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
 [[ -d $SCPT_DIR ]] && rm -rf $SCPT_DIR
-SCPresq="aHR0cHM6Ly9naXRodWIuY29tL0NodW1vR0gvcnVzcy9ibG9iL21hc3Rlci9saXN0YQ=="
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvbGlzdGE="
 SUB_DOM='base64 -d'
 
 fun_bar1 () {
@@ -183,7 +183,7 @@ meu_ip
 echo -e "\033[1;33mVerificando key... "
 cd $HOME
 REQUEST=$(echo $SCPresq|$SUB_DOM)
-wget -O "$HOME/lista-arq" https://github.com/ChumoGH/russ/blob/master/lista > /dev/null 2>&1
+wget -O "$HOME/lista-arq" $REQUEST > /dev/null 2>&1
 echo -e "\033[1;33mkey Verificada en RUSSEL ADM "
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
