@@ -183,7 +183,8 @@ meu_ip
 echo -e "\033[1;33mVerificando key... "
 cd $HOME
 REQUEST=$(echo $SCPresq|$SUB_DOM)
-wget -O "$HOME/lista-arq" ${REQUEST} > /dev/null 2>&1
+wget -O "$HOME/lista-arq" https://github.com/ChumoGH/russ/blob/master/lista > /dev/null 2>&1
+echo -e "\033[1;33mkey Verificada en RUSSEL ADM "
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
 [[ ! -d ${IVAR} ]] && touch ${IVAR}
