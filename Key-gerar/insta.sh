@@ -5,6 +5,51 @@ SCPT_DIR="/etc/SCRIPT"
 SCPresq="aHR0cHM6Ly9naXRodWIuY29tL0NodW1vR0gvcnVzcy9ibG9iL21hc3Rlci9saXN0YQ=="
 SUB_DOM='base64 -d'
 
+fun_bar1 () {
+comando[0]="$1"
+comando[1]="$2"
+(
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+) > /dev/null 2>&1 &
+tput civis
+echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
+while true; do
+for((i=0; i<18; i++)); do
+echo -ne "\033[1;31m≛"
+sleep 0.1s
+done
+[[ -e $HOME/fim ]] && rm $HOME/fim && break
+echo -e "\033[1;33m]"
+sleep 1s
+tput cuu1
+tput dl1
+echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
+done
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m EXITO !\033[1;37m"
+tput cnorm
+}
+update_pak () {
+echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
+echo -e ' '
+fun_bar1 'apt-add-repository universe -y'
+echo -e ' '
+fun_bar1 'sudo add-apt-repository ppa:neurobin/ppa'
+echo -ne " \033[1;31m[ ! ] apt-get update"
+apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] apt-get upgrade"
+apt-get upgrade -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] apt-get Repositorios Universales"
+apt-get install software-properties-common -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -e 'Listo!!! TERMINAMOS DE ACTUALIZAR TODOS LOS REPOSITORIOS'
+clear
+return
+}
+clear
+update_pak
+
 #CORES
 cor[1]="\033[1;36m"
 cor[2]="\033[1;32m"
@@ -114,10 +159,11 @@ esac
 mv -f $HOME/$1 ${ARQ}/$1
 chmod +x ${ARQ}/$1
 }
+
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "\033[1;36m--------------------KEY GENERATOR BY RUSSEL ADM----------------------\033[0m"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-read -p "INGRESE SU KEY DE VERIFICACION o NOMBRE: " Key
+read -p "INTRODUZCA SU KEY DE INSTALACIÓN: " Key
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 [[ ! $Key ]] && {
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
