@@ -7,7 +7,7 @@ dpkg --configure -a
 echo "ENTRAREMOS COMO ROOT, Para Evitar Lios!!!"
 unset Key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 cd $HOME
-rm -f instala.* > /dev/null
+#rm -f instala.* > /dev/null
 fecha=`date +"%d-%m-%y"`;
 dom='base64 -d'
 SCPdir="/etc/adm-lite"
