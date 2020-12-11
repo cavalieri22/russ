@@ -1,6 +1,24 @@
 #!/bin/bash
 # INSTALACAO BASICA
 clear
+
+[[ $(dpkg --get-selections|grep -w "gawk"|head -1) ]] || apt-get install gawk -y &>/dev/null
+[[ $(dpkg --get-selections|grep -w "mlocate"|head -1) ]] || apt-get install mlocate -y &>/dev/null
+rm $(pwd)/$0 &> /dev/null
+msg () {
+BRAN='\033[1;37m' && VERMELHO='\e[31m' && VERDE='\e[32m' && AMARELO='\e[33m'
+AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCOR='\e[0m'
+ case $1 in
+  -ne)cor="${VERMELHO}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -ama)cor="${AMARELO}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verm)cor="${AMARELO}${NEGRITO}[!] ${VERMELHO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -azu)cor="${MAG}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verd)cor="${VERDE}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -bra)cor="${BRAN}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -bar2)cor="${AZUL}${NEGRITO}======================================================" && echo -e "${cor}${SEMCOR}";;
+  -bar)cor="${AZUL}${NEGRITO}========================================" && echo -e "${cor}${SEMCOR}";;
+ esac
+}
 [[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get lista netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user http-server.py"
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
@@ -271,6 +289,18 @@ echo -e "$BARRA"
 read -p "Enter"
 }
 meu_ip
+fum_ver () {
+while [[ ! $Key ]]; do
+clear
+export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
+echo -e "\033[1;32m DIGITA TU KEY A VERIFICAR "
+msg -ne "Script Key: " && read Keey
+tput cuu1 && tput dl1
+done
+msg -ne "Key: $(ofus $Keey)
+curl $(ofus $Keey) > /dev/null 2>&1 && echo -e "\033[1;32m [ KEY VALIDA ]" || echo -e "\033[1;31m [ KEY INVALIDA]"
+read -p "Enter"
+}
 unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 [[ ! $PID_GEN ]] && PID_GEN="\033[1;31moff" || PID_GEN="\033[1;32monline"
@@ -283,7 +313,7 @@ echo -e "[3] = LIMPIAR KEYS USADAS"
 echo -e "[4] = ALTERAR ARCHIVOS DE KEY BASICA"
 echo -e "[5] = INICIAR/PARAR KEYGEN $PID_GEN\033[0m"
 echo -e "[6] = VER LOG"
-echo -e "[7] = CAMBIAR CRÉDITOS"
+echo -e "[7] = CHECAR SI KEY VALE"
 echo -e "[8] = ACTUALIZAR GENERADOR"
 echo -e "[0] = SALIR"
 echo -e "$BARRA"
@@ -308,7 +338,7 @@ echo -ne "\033[1;36m"
 cat /etc/gerar-sh-log 2>/dev/null || echo "NINGUN LOG DE MOMENTO"
 echo -ne "\033[0m" && read -p "Enter"
 elif [[ ${varread} = 7 ]]; then
-message_gen
+fum_ver
 elif [[ ${varread} = 8 ]]; then
 act_gen
 fi
