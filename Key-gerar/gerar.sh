@@ -12,18 +12,14 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
   -azu)cor="${MAG}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -verd)cor="${VERDE}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -bra)cor="${BRAN}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
-  -bar2)cor="${AZUL}${NEGRITO}======================================================" && echo -e "${cor}${SEMCOR}";;
-  -bar)cor="${AZUL}${NEGRITO}========================================" && echo -e "${cor}${SEMCOR}";;
+  -bar2)cor="${AZUL}${NEGRITO}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${cor}${SEMCOR}";;
+  -bar)cor="${AZUL}${NEGRITO}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${cor}${SEMCOR}";;
  esac
 }
 [[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get lista netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user http-server.py"
 IVAR="/etc/http-instas"
-BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
-echo -e "$BARRA"
-iv=$(cat $IVAR)
-echo -e "\n           NEW KEY GENERATOR BY 【 RUSSEL 】"
-echo -e "           INSTALACIONES: "$iv "\n"
-echo -e $BARRA
+BARRA="\033[1;36m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
+
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
@@ -284,6 +280,31 @@ echo -e "$BARRA"
 read -p "Enter"
 }
 meu_ip
+
+menau () {
+clear
+unset PID_GEN
+PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
+echo -e "$BARRA"  #echo -e '\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;34mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;31mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+figlet -f future RUSSEL | lolcat
+[[ ! $PID_GEN ]] && PID_GEN="\033[1;31m APAGADO" || PID_GEN="\033[1;32m ENCENDIDO"
+echo -e "      Keys Usadas : " $(cat $IVAR) "\n"
+msg -bar
+echo -e "Ficheros Fijados en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
+msg -bar
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
+echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m APAGAR/VER KEYS"
+echo -e "\033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;33m LIMPIAR KEYS USADAS"
+echo -e "\033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m<\033[0;33m ALTERAR ARCHIVOS DE KEY BASICA"
+echo -e "\033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;33m INICIAR/PARAR KEYGEN $PID_GEN\033[0m"
+echo -e "\033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;33m REGISTRO DE KEYS"
+echo -e "\033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m<\033[0;33m Checar KEY ACTIVADA"
+echo -e "\033[0;35m[\033[0;36m8\033[0;35m] \033[0;34m<\033[0;33m ACTUALIZAR GENERADOR"
+echo -e "\033[0;35m[\033[0;36mO\033[0;35m] \033[0;34m<\033[0;33m SALIR"
+echo -e "$BARRA"
+
+}
+
 fum_ver () {
 while [[ ! $Keey ]]; do
 clear
@@ -296,22 +317,10 @@ msg -ne "Key: $(ofus $Keey)"
 curl $(ofus $Keey) > /dev/null 2>&1 && echo -e "\033[1;32m [ KEY VALIDA ]" || echo -e "\033[1;31m [ KEY INVALIDA]"
 read -p "Enter"
 }
-PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
-[[ ! $PID_GEN ]] && PID_GEN="\033[1;31moff" || PID_GEN="\033[1;32monline"
-echo -e "$BARRA"
-echo -e "Diretorio de los archivos repasados \033[1;31m${SCPT_DIR}\033[0m"
-echo -e "$BARRA"
-echo -e "[1] = GENERAR 1 KEY ALEATORIA"
-echo -e "[2] = APAGAR/VER KEYS"
-echo -e "[3] = LIMPIAR KEYS USADAS"
-echo -e "[4] = ALTERAR ARCHIVOS DE KEY BASICA"
-echo -e "[5] = INICIAR/PARAR KEYGEN $PID_GEN\033[0m"
-echo -e "[6] = VER LOG"
-echo -e "[7] = CHECAR SI KEY VALE"
-echo -e "[8] = ACTUALIZAR GENERADOR"
-echo -e "[0] = SALIR"
-echo -e "$BARRA"
+
 while [[ ${varread} != @([0-8]) ]]; do
+clear
+menau
 read -p "Opcao: " varread
 done
 echo -e "$BARRA"
