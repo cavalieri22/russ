@@ -23,6 +23,7 @@ echo -e "$BARRA"
 iv=$(cat $IVAR)
 echo -e "\n           NEW KEY GENERATOR BY 【 RUSSEL 】"
 echo -e "           INSTALACIONES: "$iv "\n"
+echo -e $BARRA
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
@@ -247,6 +248,7 @@ echo -e "$BARRA"
 echo -ne "\033[0m" && read -p "Enter"
 }
 start_gen () {
+unset PID_GEN
 PIDGEN=$(ps x|grep -v grep|grep "http-server.sh")
 if [[ ! $PIDGEN ]]; then
 screen -dmS generador /bin/http-server.sh -start
@@ -294,7 +296,6 @@ msg -ne "Key: $(ofus $Keey)"
 curl $(ofus $Keey) > /dev/null 2>&1 && echo -e "\033[1;32m [ KEY VALIDA ]" || echo -e "\033[1;31m [ KEY INVALIDA]"
 read -p "Enter"
 }
-unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 [[ ! $PID_GEN ]] && PID_GEN="\033[1;31moff" || PID_GEN="\033[1;32monline"
 echo -e "$BARRA"
