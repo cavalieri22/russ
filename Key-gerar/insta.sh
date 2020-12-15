@@ -34,8 +34,6 @@ tput cnorm
 update_pak () {
 echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
 echo -e ' '
-apt install wget -y > /dev/null
-echo -e ' '
 echo -ne " \033[1;31m[ ! ] apt-get update"
 apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] apt-get upgrade"
@@ -130,10 +128,10 @@ wget -i $HOME/lista -o /dev/null
 unset arqs
 for arqs in `ls $HOME/update`; do
 echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqs] "
-fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
+fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mFalla (no recibido!)" || echo -e "\033[1;31m- \033[1;31mRecibido con éxito!"
 done
 cd $SCPT_DIR
-wget -O lista $REQUEST -o /dev/null
+wget -i $HOME/lista -o /dev/null 
 cat http-server.py > /bin/http-server.py
 chmod +x /bin/http-server.py
 cp gerar.sh /usr/bin/gerar.sh
