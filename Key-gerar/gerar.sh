@@ -340,4 +340,4 @@ fum_ver
 elif [[ ${varread} = 8 ]]; then
 act_gen
 fi
-/usr/bin/gerar.sh
+gerar
