@@ -21,13 +21,12 @@ IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
 echo ' '
+iv=$(cat $IVAR)
 echo '
-
            NEW KEY GENERATOR BY 【 RUSSEL 】
-           INSTALACIONES: $(cat $IVAR)
+           INSTALACIONES: $iv
                       INSTALADOR OFICIAL 
-'                  
-echo ' '
+'   
 echo ' '
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
