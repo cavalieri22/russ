@@ -24,15 +24,13 @@ done
 echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
 
-sleep 2
-
-fun_bar 'apt-get update -y' 'yum update -y'
+sleep 1
 fun_bar 'apt-get install openssh-server -y' 'apt-get install curl -y'
 fun_bar 'yum install openssh-server -y' 'apt-get install openssh-client -y'
-fun_bar 'yum install openssh-client -y' 'apt-get install stunnel4 -y'
+fun_bar 'yum install openssh-client -y' 'apt install stunnel4 -y'
 fun_bar 'yum install stunnel4 -y'
 fun_bar 'apt-get install stunnel -y'  'yum install stunnel -y'
-ip=$(curl https://api.ipify.org/)
+ip=$(curl ifconfig.me)
 echo -e "Paquetes Instalados"
 sleep 1
 openssl genrsa 2048 > stunnel.key
@@ -80,8 +78,10 @@ echo -e "\033[1;31m ***********REINICIADO...*************"
 echo -e "\033[1;34m ###################################"
 echo -e "\033[1;31mCONFIGURACION SSL ACEPTADA CON EXITO"
 echo -e "\033[1;34m ###################################"
-echo -e "SU IP HOST DEL SERVIDOR:\037[1;30m $ip"
+echo -e "SU IP HOST DEL SERVIDOR:\033[1;31m $ip"
 sleep 1
 echo -e "Reinicie su VPS (Opcional) - sudo reboot"
-read -p " "
-menu
+read -p " Presiona Enter para COntinuar "
+unset * > /dev/null
+source menu
+
