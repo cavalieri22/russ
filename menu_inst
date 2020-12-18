@@ -1424,11 +1424,13 @@ echo -e "${cor[2]} \033[1;32mPara continuar debes tener configurado un dominio e
 echo -e "${cor[2]} \033[1;32m     Dominio es la URL de acceso al servidor, No la IP"
 echo -e "${cor[2]} \033[1;35m***********************************************************"
 echo -e "Si Cumples con ese requisito dijita Y/y, Caso contrario N/n para salir"
+unset yesno
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
 done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
+unset v2op
 echo -ne "\033[1;37m \n 1)- Instalar edicion Local \n 2)- Instalar edicion WEB \n 3)- Desinstalar \n 4)- Menu V2ray" | lolcat
 echo -ne " ESCOJE: "; read v2op
 case $v2op in
@@ -1451,8 +1453,8 @@ echo "Opcion Selecionada " $v2op "Vamos a Desisnatalar" | lolcat
 source <(curl -sL https://multi.netlify.com/v2ray.sh) --remove
 source <(curl -sL https://git.io/fNgqx) --remove
 rm -rf /usr/local/V2ray.Fun
-rm -f /etc/v2ray/*
-rm -rf /etc/v2ray/
+#rm -f /etc/v2ray/*
+rm -rf /etc/v2ray
 ;;
 4)
 echo "Opcion Selecionada " $v2op "Vamos a Iniciar" | lolcat
