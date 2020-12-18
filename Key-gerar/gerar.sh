@@ -20,6 +20,17 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
 
+ports_ () {
+porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
+echo -e "\033[0;36m   Keygen:\033[0;35m 8888"
+fi`;
+portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
+echo -e "\033[0;36mApache2 :\033[0;35m 81"
+fi`;
+echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
+}
+####fin puertos
+
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
@@ -288,7 +299,8 @@ PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 echo -e "$BARRA"  #echo -e '\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;34mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;31mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 figlet -f future "            RUSSEL" | lolcat
 [[ ! $PID_GEN ]] && PID_GEN="\033[0;35m[\033[0;31mAPAGADO\033[0;35m]" || PID_GEN="\033[0;35m[\033[0;36mENCENDIDO\033[0;35m]"
-echo -e "          Keys Usadas : " $(cat $IVAR) #"\n"
+ports_ 
+echo  ""
 msg -bar
 echo -e "Ficheros Fijados Local en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
 msg -bar
