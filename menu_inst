@@ -2,7 +2,9 @@
 os_version=$(lsb_release -sr);
 distribution=$(lsb_release -si);
 dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
-
+sslkk (){
+sslports=`netstat -tunlp | grep stunnel4 | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/ssl.txt && echo | cat /tmp/ssl.txt | tr '\n' ' ' > /etc/adm-lite/sslports.txt && cat /etc/adm-lite/sslports.txt`;
+}
 ban_inex () {
 
 echo "BANNER INEXISTENTE"
@@ -1257,7 +1259,6 @@ echo "connect = 127.0.0.1:22" >> /etc/stunnel/stunnel.conf
 echo -e "\033[1;34m ##############################"
 echo -e "\033[1;37m R E I N I C I A N D O  -  STUNNEL4 - SSL"
 echo -e "\033[1;34m ##############################"
-sleep 1
 service ssh restart 1>/dev/null 2 /dev/null
 service stunnel4 start 1>/dev/null 2 /dev/null
 service stunnel4 restart 1>/dev/null 2 /dev/null
@@ -1268,7 +1269,8 @@ echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
 sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 #echo "Limpieza Finalizada"
-russ
+unset lang
+return 0
 ;;
 2)
 unset lang
