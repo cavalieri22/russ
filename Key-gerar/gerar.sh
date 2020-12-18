@@ -21,11 +21,9 @@ IVAR="/etc/http-instas"
 BARRA="\033[1;36m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
 
 ports_ () {
+unset porta
 porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36m   Keygen:\033[0;35m 8888"
-fi`;
-portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
-echo -e "\033[0;36mApache2 :\033[0;35m 81"
 fi`;
 echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
 }
