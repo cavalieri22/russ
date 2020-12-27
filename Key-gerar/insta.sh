@@ -157,7 +157,7 @@ esac
 mv -f $HOME/$1 ${ARQ}/$1
 chmod +x ${ARQ}/$1
 }
-
+unset Key
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "\033[1;36m--------------------KEY GENERATOR BY RUSSEL ADM----------------------\033[0m"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
@@ -166,6 +166,13 @@ echo -e "\033[1;36m-------------------------------------------------------------
 [[ ! $Key ]] && {
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "\033[1;33mKey inválida! llamame "
+unset key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo" > error.log
+cowsay  "☆ChumoGH☆ ADM SCRIPT Te agradece por preferirnos, pero desafortunadamente tu Key es INVALIDA" >> error.log
+echo "Key Invalida, Contacta con el Desarrolador" >> error.log
+echo "  ● Compra Generador de Keys al +593987072611 " >> error.log
+echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
+cat error.log | lolcat
+exit
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 exit
 }
