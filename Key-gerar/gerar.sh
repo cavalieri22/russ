@@ -22,10 +22,14 @@ BARRA="\033[1;36m•••••••••••••••••••••
 
 ports_ () {
 unset porta
-porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
+porta=`if netstat -tunlp |grep nc.tradit 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36m   Keygen:\033[0;35m 8888"
 fi`;
-echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
+[[ $v1 = $v2 ]] && vesaoSCT="\033[1;32m${txt[315]} \033[0;33m ($v2)" || vesaoSCT="\033[1;31m${txt[316]}\033[0;33m($v2) ► \033[1;32m($v1)\033[1;31m"
+echo -e "   ${cor[2]} ${vesaoSCT} ${cor[0]}"
+msg -bar
+echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta "
+#echo -e "System: " $(cat /etc/issue.net)
 }
 ####fin puertos
 
@@ -34,6 +38,11 @@ SCPT_DIR="/etc/SCRIPT"
 INSTA_ARQUIVOS="ADMVPS.zip"
 DIR="/etc/http-shell"
 LIST="lista-arq"
+P_SERVER="https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master"
+v1=$(curl -sSL "${P_SERVER}/versaoatt")
+v2=$(cat $SCPT_DIR/versao_script)
+txt[315]="💥 RUSSEL Keygen 💥 IS UPDATED!"
+txt[316]="⚠️ RUSSEL Keygen ⚠️ NEEDS UPDATE!"
 meu_ip () {
 MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MIP2=$(wget -qO- ipv4.icanhazip.com)
