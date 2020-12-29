@@ -1074,7 +1074,14 @@ echo -e "$(source trans -b pt:${id} "Procedimento Concluido")\n${barra}"
 return 0
 }
 
+inisocks () {
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/sockspy.sh)
+}
+
 iniciarsocks () {
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/sockspy.sh)
+}
+
 pstop () {
 [[ -e /etc/adm-lite/sockson ]] && {
 echo -e "${barra}\n $(source trans -b pt:${id} "Parando Socks Python")\n${barra}"
@@ -1093,8 +1100,7 @@ rm /etc/adm-lite/sockson
 [[ -e /etc/adm-lite/sockdirect ]] && rm /etc/adm-lite/sockdirect
 [[ -e /etc/adm-lite/sockopen ]] && rm /etc/adm-lite/sockopen
 }
-return 0
-}
+
 socksinstal () {
 [[ ! -e /etc/adm-lite/sockson ]] && touch /etc/adm-lite/sockson
 }
@@ -1198,6 +1204,13 @@ rm ./get.py
  } || {
 echo -e "$barra\n Gettunel$(source trans -b pt:${id} "nao foi iniciado")\n$barra"
  }
+}
+
+ssrmenu() 
+{
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/ssrrmu.sh)
+#source <(curl -sL https://github.com/VPS-MX/VPS-MX-8.0/raw/master/SCRIPT/C-SSR.sh)
+#sed '/gnula.sh/ d' /etc/crontab > /bin/ejecutar/crontab
 }
 
 tcpbypass_fun () {
@@ -1418,50 +1431,55 @@ echo -e "$barra"
 
 v2ray-socket() {
 clear
-echo -e "${cor[1]} ➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶ ${cor[0]}"
-echo -e "${cor[2]} \033[1;32m          * ESTA OPCION ES EXPERIMENTAL *"
-echo -e "${cor[2]} \033[1;32mPara continuar debes tener configurado un dominio en el VPS"
-echo -e "${cor[2]} \033[1;32m     Dominio es la URL de acceso al servidor, No la IP"
-echo -e "${cor[2]} \033[1;35m***********************************************************"
-echo -e "Si Cumples con ese requisito dijita Y/y, Caso contrario N/n para salir"
-unset yesno
+[[ -e /etc/v2ray/config.json ]] && v2ray || echo -e "${cor[1]} ➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶ ${cor[0]}
+${cor[2]} \033[1;32m          * ESTA OPCION ES EXPERIMENTAL *
+${cor[2]} \033[1;32mPara continuar debes tener configurado un dominio en el VPS
+${cor[2]} \033[1;32m     Dominio es la URL de acceso al servidor, No la IP
+${cor[2]} \033[1;35m***********************************************************
+Si Cumples con ese requisito dijita Y/y, Caso contrario N/n para salir" 
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
+echo "Digita N/n para Salir"
 read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
 done
+
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
-unset v2op
-echo -ne "\033[1;37m \n 1)- Instalar edicion Local \n 2)- Instalar edicion WEB \n 3)- Desinstalar \n 4)- Menu V2ray" | lolcat
+echo -ne "\033[1;37m \n 1)- V2ray Manager \n 2)- V2ray Pannel WEB \n 3)- Desinstalar \n 4)- Menu V2ray" | lolcat
 echo -ne " ESCOJE: "; read v2op
 case $v2op in
 1)
 echo "Opcion Selecionada " $v2op "Vamos a Instalar" | lolcat
 source <(curl -sL https://multi.netlify.com/v2ray.sh)
+exit
 ;;
 2)
 echo "Opcion Selecionada " $v2op "Vamos a Instalar" | lolcat
 bash <(curl -sL https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/cgh-v2ray.sh)
-
+exit
 #wget -q https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/cgh-v2ray.sh
 rm -f cgh-v2ray.*
 echo -e "${cor[1]} INSTALACION FINALIZADA!!!!! ${cor[0]}"
 echo -e "${cor[1]} ➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷ ${cor[0]}"
-read -rsp $'Presiona una TECLA o Espere 5 segundos para continuar...\n' -n 1 -t 5;
+read 'Presiona una TECLA '
+exit
 ;;
 3)
 echo "Opcion Selecionada " $v2op "Vamos a Desisnatalar" | lolcat
 source <(curl -sL https://multi.netlify.com/v2ray.sh) --remove
 source <(curl -sL https://git.io/fNgqx) --remove
 rm -rf /usr/local/V2ray.Fun
-#rm -f /etc/v2ray/*
-rm -rf /etc/v2ray
+rm -f /etc/v2ray/*
+rm -rf /etc/v2ray/
+exit
 ;;
 4)
 echo "Opcion Selecionada " $v2op "Vamos a Iniciar" | lolcat
 v2ray
+exit
 ;;
 *)
 menu
+exit
 ;;
 esac
 fi
@@ -1523,13 +1541,10 @@ unset v2ray
 [[ -e /etc/shadowsocks.json ]] && shadow="\033[1;32m[ ✔ ] "
 [[ "$(ps x | grep "ultimatebot" | grep -v "grep")" != "" ]] && telegran="\033[1;32m[ ✔ ] "
 [[ -e /etc/adm-lite/sockson ]] && socks="\033[1;32m[ ✔ ] "
-[[ -e /etc/adm-lite/gettun ]] && gettun="\033[1;32m[ ✔ ] "
 [[ -e /etc/adm-lite/edbypass ]] && tcpbypass="\033[1;32m[ ✔ ] "
 [[ -e /etc/webmin/miniserv.conf ]] && webminn="\033[1;32m[ ✔ ] "
 [[ -e /usr/local/ddos/ddos.conf ]] && ddos="\033[1;32m[ ✔ ] "
 [[ -e /etc/v2ray/config.json ]] && v2ray="\033[1;32m[ ✔ ] "
-#[[ -e /etc/v2ray/config.json ]] && v2ray="\033[1;32m[ ✔ ] "
-
 echo -e "$barra"
 echo -e "${cor[5]} ${txt[335]}"
 echo -e "$barra"
@@ -1537,9 +1552,9 @@ echo -e "${cor[2]} [1] > ${cor[3]}SQUID / gzip $squid"
 echo -e "${cor[2]} [2] > ${cor[3]}DROPBEAR HTTP/HTTPS $dropbear"
 echo -e "${cor[2]} [3] > ${cor[3]}OPENVPN $openvpn"
 echo -e "${cor[2]} [4] > ${cor[3]}SSL/TLS TUNNEL $stunel"
-echo -e "${cor[2]} [5] > ${cor[3]}SHADOW SOCKS $shadow"
-echo -e "${cor[2]} [6] > ${cor[3]}PROXY SOCKS $socks"
-echo -e "${cor[2]} [7] > ${cor[3]}PROXY GETTUNEL $gettun"
+echo -e "${cor[2]} [5] > ${cor[3]}Shadowsocks-R,Go,Liv $shadow \033[1;33m( #BETA )"
+echo -e "${cor[2]} [6] > ${cor[3]}ShadowsocksR $shadow\033[1;33m( #FIX )"
+echo -e "${cor[2]} [7] > ${cor[3]}PROXY SOCKS $socks"
 echo -e "${cor[2]} [8] > ${cor[3]}TCP OVER BYPASS $tcpbypass"
 echo -e "${cor[2]} [9] > ${cor[3]}TELEGRAN MANAGER BOT $telegran"
 echo -e "${cor[2]} [10] > ${cor[3]}WEBMIN $webminn"
@@ -1566,10 +1581,10 @@ read -p " Enter";;
 fun_shadowsocks
 read -p " Enter";;
 6)
-iniciarsocks
+ssrmenu
 read -p " Enter";;
 7)
-gettunel_fun
+iniciarsocks
 read -p " Enter";;
 8)
 tcpbypass_fun
