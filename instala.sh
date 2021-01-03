@@ -102,6 +102,7 @@ echo 'echo -e "Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.
 echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
 echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
 echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e " Tiempo en Linea : $(uptime -p)"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo 'echo -e "Bienvenido!"' >> .bashrc
 echo 'echo -e "Teclee russ o menu para ver el listado de comandos."' >> /root/.bashrc
@@ -118,6 +119,7 @@ echo 'echo -e ""' >> /root/.bashrc
 echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
 echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
 echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e " Tiempo en Linea : $(uptime -p)"' >> /root/.bashrc
 echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo 'echo -e "Bienvenido!"' >> .bashrc
@@ -156,11 +158,7 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
 echo "ADM\-"$name"-/R-U-S-S" > exito
-rm -f instala.*
-rm -f russel.*
-echo " Presiona Enter para Continuar"
-read -p " "
-russ
+exit
 }
 ofus () {
 unset txtofus
@@ -194,8 +192,8 @@ valid_fun () {
 mkdir /etc/adm-lite
 cd /etc/adm-lite
 echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
-echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
-echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
+echo "cd /etc/adm-lite && bash ./menu" > /bin/russ
+echo "cd /etc/adm-lite && bash ./menu" > /bin/adm
 chmod +x /bin/menu
 chmod +x /bin/cgh
 chmod +x /bin/chumogh
@@ -219,18 +217,17 @@ cd $HOME
 [[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
 [[ -e /bin/menu ]] && rm /bin/menu
 [[ -e $HOME/chumogh ]] && rm -rf $HOME/chumogh
-rm -f setup.* > /dev/null
 rm -f instala.*  > /dev/null
 rm -f /bin/cgh > /dev/null
-rm -f /bin/menu > /dev/null
 rm -rf /bin/ejecutar > /dev/null
-unset * > /dev/null
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆RUSSEL☆ ADM SCRIPT " > error.log
+unset key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo" > error.log
+cowsay  "☆RUSS-ADM☆ ADM SCRIPT Te agradece por preferirnos, pero desafortunadamente tu Key es INVALIDA" >> error.log
 echo "Key Invalida, Contacta con el Desarrolador" >> error.log
 echo "  ● Compra Keys al +593987072611 " >> error.log
 echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
 cat error.log | lolcat
 rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
+exit
 }
 while [[ ! $Key ]]; do
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
