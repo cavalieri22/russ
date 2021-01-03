@@ -1,7 +1,31 @@
-#!/bin/bash
 cco=1
+unset tmm ext tempo tempoin
 uskk=$(cat /bin/ejecutar/uskill)
-#user=$(echo ${saks:0:5})
+fk () {
+#echo -e "\033[1;39m "
+echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41mEn APPS como HTTP Inyector,CUSTOM,KPN Rev,etc"
+if [ -f /etc/default/dropbear ]
+then
+#echo -e "\033[1;39mPara uso Dropbear usa la Sintaxis"
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+echo -e "【 Dropbear >${cor[4]}   $IP${cor[2]}:${cor[5]}$PORT${cor[2]}@${cor[4]}$name${cor[2]}:${cor[4]}$pass   】"
+else
+echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41mNo existe Dropbear"
+fi
+######
+if [ -f /etc/stunnel/stunnel.conf ]
+then
+#echo -e "\033[1;39mPara uso SSL usa la Sintaxis"
+sslports=`netstat -tunlp | grep stunnel4 | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/ssl.txt && echo | cat /tmp/ssl.txt | tr '\n' ' ' > /etc/adm-lite/sslports.txt && cat /etc/adm-lite/sslports.txt`;
+PORT=$(cat /etc/adm-lite/sslports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+echo -e "【   SSL    > ${cor[4]}  $IP${cor[2]}:${cor[5]}$PORT${cor[2]}@${cor[4]}$name${cor[2]}:${cor[4]}$pass   】"
+else
+echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41mNo existe SSL"
+#echo -e "\033[1;39m"
+fi
+msg -bar
+}
 os_version=$(lsb_release -sr);
 distribution=$(lsb_release -si);
 fun_ovpn_onl () {
@@ -12,6 +36,51 @@ echo "$userovpn"
 fi
 done
 }
+
+time-us () {
+if [[ -z "${tempoin}" ]];then
+    tempoin="30"
+    tempoin=$(( $tempoin * 60 ))
+    tempoin=$tempoin"s"
+    echo "Default 30 minutos"
+fi
+tempo=$(echo "$tempoin" |sed 's/ //g')
+tmm=$(echo $tempo |sed 's/[0-9]//g')
+if [ "$tmm" = "s" ]; then
+ext=$(echo $tempo |sed 's/[a-z]//g')
+let tempo=$ext*1
+tempo=$tempo"s"
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+ext=1
+fi
+if [ "$tmm" = "m" ]; then
+ext=$(echo $tempo |sed 's/[a-z]//g')
+let tempo=$ext*60
+tempo=$tempo"s"
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+ext=1
+fi
+if [ "$tmm" = "h" ]; then   
+ext=$(echo $tempo |sed 's/[a-z]//g')
+    if [ "$ext" > "23" ]; then   
+    ext=$(echo $tempo |sed 's/[a-z]//g')
+    let tempo=$ext*3600
+    tempo=$tempo"s"
+    else
+    let tempo=$ext*3600
+    tempo=$tempo"s"
+    ext=1
+    fi
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+fi
+if [ "$tmm" = "d" ]; then
+ext=$(echo $tempo |sed 's/[a-z]//g')
+let tempo=$ext*3600
+tempo=$tempo"s"
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+fi
+}
+
 fun_barcgh () {
 comando[0]="$1"
 comando[1]="$2"
@@ -47,7 +116,7 @@ do
 echo "$testus"
 done
 printf "\n"
-echo -e "${cor[5]} ${txt[28]}"; read -p " ⌐╦╦═─ : " nome
+echo -e "${cor[5]} ${txt[28]}"; read -p "Digita : " nome
 if [ -z $nome ]; then
 echo -e "${cor[5]} ${txt[29]} ${cor[0]}" 
 return
@@ -57,45 +126,67 @@ then
 echo -e "${cor[5]} ${txt[30]} ${cor[0]}"
 return
 fi
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -e "${cor[5]} ${txt[31]} $nome"
+name=$nome
 read -p " ${txt[35]} " pass
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
-echo -e "${cor[5]} ${txt[32]}  $name"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[32]}  $nome"
 echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " ${txt[37]} " tempoin
-tempo=$(echo "$tempoin" |sed 's/ //g')
-ext=1
-limit=75
+echo -e "${cor[5]} ${txt[33]}  $name"
+read -p " ${txt[36]} " limit
+if [[ -z "${limit}" ]];then
+    limit="5"
+    echo "Default 5 Logins"
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+time-us
 valides=$(date '+%C%y-%m-%d' -d " +$ext days")
 useradd -M -s /bin/false $nome -e $valides
 (echo $pass;echo $pass) |passwd $nome 1>/dev/null 2>/dev/null
+if [ "$OPENVPN" = "on" ]; then
+open_1 $nome $pass $daysrnf $limit s
+echo -e "${cor[5]} IP => ${cor[4]}$IP"
+echo -e "${cor[5]} ${txt[34]} ${cor[4]}$nome"
+echo -e "${cor[5]} ${txt[35]} ${cor[4]}$pass"
+echo -e "${cor[5]} ${txt[36]} ${cor[4]}$limit"
+echo -e "${cor[5]} ${txt[37]} ${cor[4]}$datexp"
+msg -bar
+rm -f ./$CLIENT.ovpn > /dev/null
+return
+fi
 echo "#!/bin/bash
 sleep $tempo
+uskk=$(cat /bin/ejecutar/uskill)
+uskk=$(( $uskk + 1 ))
+echo $uskk > /bin/ejecutar/uskill
 kill"' $(ps -u '"$nome |awk '{print"' $1'"}') 1>/dev/null 2>/dev/null
 userdel --force $nome
-uskk=$(cat /bin/ejecutar/uskill)
-let uskk=$uskk+$cco
-echo $uskk > /bin/ejecutar/uskill
+rm -rf ./$CLIENT.ovpn > /dev/null
 rm -rf /etc/usuariosteste/$nome.sh
 exit" > /etc/usuariosteste/$nome.sh
 figlet  $nome | lolcat
 echo -e "${cor[5]} * ${txt[353]} *"
 echo -e "${cor[5]} * ${txt[352]} *"
 echo -e "${cor[1]} ×××××××××××××××××××××××××××××××××××××××××××××××× ${cor[0]}"
-puertos
+ports_
 echo -e "${cor[1]} ×××××××××××××××××××××××××××××××××××××××××××××××× ${cor[0]}"
 echo -e "${cor[5]} IP => ${cor[4]}$IP"
 echo -e "${cor[5]} ${txt[34]} ${cor[4]}$nome"
 echo -e "${cor[5]} ${txt[35]} ${cor[4]}$pass"
 echo -e "${cor[5]} ${txt[36]} ${cor[4]}$limit"
 echo -e "${cor[5]} ${txt[37]} ${cor[4]}$tempo"
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar
 echo "senha: $pass" > $dir_user/$nome
 echo "limite: $limit" >> $dir_user/$nome
 echo "data: $valid" >> $dir_user/$nome
 echo -ne "${cor[2]}"
-echo -e "                Despues de expirar !!!!"
+#####
+fk
+######
+#echo -e "-----${cor[4]}      $IP${cor[2]}:${cor[5]}PORT${cor[2]}@${cor[4]}$name${cor[2]}:${cor[4]}$pass "
+echo -e "               Despues de expirar !!!!"
 echo -e "  Este usuario sera desconectados y eliminados."
 echo -ne "${cor[2]}"
 bash /etc/usuariosteste/$nome.sh &
@@ -106,7 +197,7 @@ net_meter () {
 net_dir="/etc/adm-lite/userDIR/usr_cnx"
 if [ ! -e "$net_dir" ]; then
 echo -e "${cor[5]} ${txt[289]}"
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 return
 fi
 net_cent="/tmp/porcentagem"
@@ -120,9 +211,9 @@ sed -i '/^$/d' $net_dir
 bb=$(printf '%-18s' "${txt[285]}")
 aa=$(printf '%-19s' "${txt[287]}")
 cc=$(printf '%-18s' "${txt[286]}")
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -e "\033[1;33m $aa $bb $cc"
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 while read u; do
 b=$(printf '%-18s' "$(($(echo $u | awk '{print $2}')/970)) - MB")
 a=$(printf '%-20s' "$(echo $u | awk '{print $1}')")
@@ -137,7 +228,7 @@ echo -e "\033[1;32m $a \033[1;31m$b \033[1;32m$c"
 fi
 done < $net_dir
 [[ "$(cat $net_dir)" = "" ]] && echo -e "${cor[5]} ${txt[289]}"
-echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ \033[0m"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ \033[0m"
 echo -e "${cor[1]}  Controlar Consumo de Cada Usuario Por Separado ${cor[0]}"
 unset net_dir
 }
@@ -152,6 +243,7 @@ echo "$user $for_kill"
     done
 rm $tmp_verifica
 }
+
 
 fun_time_user () {
 declare -A data
@@ -787,7 +879,7 @@ read -p " [ s | n ]: " sin_nao
  break
  fi
  done
-echo '<font color="#228B22">© 2020 R-U-S-S, Inc</font>' >> $local
+echo '<font color="#228B22">© 2021 R-U-S-S, Inc</font>' >> $local
 #echo '<h1><font>===================================</font></h1>' >> $local
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 service ssh restart > /dev/null 2>&1 &
