@@ -155,6 +155,10 @@ fun_list "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
 echo -e "KEY: $keyfinal\ngenerada!"
 echo -e "$BARRA"
+echo -e "Instalador Oficial"
+echo -e "$BARRA"
+echo "wget -q https://raw.githubusercontent.com/ChumoGH/russ/master/russel.sh; chmod +x russel.sh;./russel.sh"
+echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
 att_gen_key () {
