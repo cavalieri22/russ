@@ -1,6 +1,16 @@
 #!/bin/bash
+function printTitle
+{
+    echo ""
+    echo -e "\033[1;92m$1\033[1;91m"
+    printf '%0.s-' $(seq 1 ${#1})
+    echo ""
+}
 killall apt apt-get &> /dev/null
-rm -rf russel.*
+TIME_START="$(date +%s)"
+DOWEEK="$(date +'%u')"
+[[ -e $HOME/russel.sh ]] && rm $HOME/russel.*
+killall apt apt-get &> /dev/null
 dpkg --configure -a
 fun_bar1 () {
 comando[0]="$1"
@@ -80,4 +90,10 @@ dom='base64 -d'
 RE=$(echo $update1|$dom)
 rm -rf instala.*
 wget -q -O instala.sh -q $RE;chmod 777 instala.sh* && ./instala.sh*
-rm -rf russel.*
+rm -f instala.*
+rm -f russel.*
+printTitle "Duracion de Uso del Instalador ADM"
+echo -e "   Ejecucion de  $((($(date +%s)-$TIME_START)/60)) min."
+echo " Presiona Enter para Continuar"
+read -p " "
+[[ -e /etc/adm-lite/menu ]] && menu
