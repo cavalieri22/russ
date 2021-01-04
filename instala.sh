@@ -18,6 +18,7 @@ SCPfrm="${SCPdir}"
 SCPinst="${SCPdir}"
 
 update_pak () {
+unset Key key Key
 clear
 echo -ne " \033[1;31m[ ! ] Install SysBanner"
 apt-get install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
@@ -195,8 +196,8 @@ echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
 echo "cd /etc/adm-lite && bash ./menu" > /bin/russ
 echo "cd /etc/adm-lite && bash ./menu" > /bin/adm
 chmod +x /bin/menu
-chmod +x /bin/cgh
-chmod +x /bin/chumogh
+chmod +x /bin/adm
+chmod +x /bin/russ
 cd /etc/adm-lite
 touch /etc/adm-lite/index.html
 mv -f ${SCPinstal}/* /etc/adm-lite/
@@ -212,13 +213,10 @@ invalid_key () {
 msg -bar2 && msg -verm "Key Failed! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
 cd $HOME
-[[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
 [[ -d /etc/adm-lite ]] && rm -rf /etc/adm-lite
 [[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
 [[ -e /bin/menu ]] && rm /bin/menu
-[[ -e $HOME/chumogh ]] && rm -rf $HOME/chumogh
 rm -f instala.*  > /dev/null
-rm -f /bin/cgh > /dev/null
 rm -rf /bin/ejecutar > /dev/null
 unset key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo" > error.log
 cowsay  "☆RUSS-ADM☆ ADM SCRIPT Te agradece por preferirnos, pero desafortunadamente tu Key es INVALIDA" >> error.log
@@ -227,7 +225,6 @@ echo "  ● Compra Keys al +593987072611 " >> error.log
 echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
 cat error.log | lolcat
 rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
-exit
 }
 while [[ ! $Key ]]; do
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
@@ -299,7 +296,7 @@ echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=�
 echo -e "${cor[5]} INSTALADOR R - U - S - S  ®"
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
 echo -e "${cor[3]} $(source trans -b pt:${id} "Iniciando Instalacion...")"
-echo -e "${cor[3]} Script V 4.1 Sujeto a Mejoras del MOD"
+echo -e "${cor[3]} Script V 4.2 Sujeto a Mejoras del MOD"
 echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
