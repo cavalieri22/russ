@@ -9,7 +9,7 @@ function printTitle
 killall apt apt-get &> /dev/null
 TIME_START="$(date +%s)"
 DOWEEK="$(date +'%u')"
-[[ -e $HOME/russel.sh ]] && rm $HOME/russel.*
+[[ -e $HOME/russel.sh ]] && rm $HOME/russel.sh.*
 killall apt apt-get &> /dev/null
 dpkg --configure -a
 fun_bar1 () {
@@ -80,20 +80,15 @@ return
 clear
 update_pak
 echo -e "\033[1;32m CAMBIAR ZONA HORARIA EN ( * \033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 14 \033[1;32m)"
-#echo -e 'ZONA HORARIA EN UTC - 05:00 America/Guayaquil'
-#ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
-rm $(pwd)/$0 &> /dev/null
-read -rsp $'Presiona una TECLA o Espere 5 segundos para continuar...\n' -n 1 -t 6;
 rm $(pwd)/$0 &> /dev/null
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvcnVzcy9tYXN0ZXIvaW5zdGFsYS5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
-rm -rf instala.*
 wget -q -O instala.sh -q $RE;chmod 777 instala.sh* && ./instala.sh*
 rm -f instala.*
-rm -f russel.*
 printTitle "Duracion de Uso del Instalador ADM"
 echo -e "   Ejecucion de  $((($(date +%s)-$TIME_START)/60)) min."
 echo " Presiona Enter para Continuar"
+rm -f russel.*
 read -p " "
 [[ -e /etc/adm-lite/menu ]] && menu
